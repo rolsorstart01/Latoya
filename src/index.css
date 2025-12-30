@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   HQ SPORT - ULTRA PREMIUM DESIGN SYSTEM
+   ======================================== */
+
+/* Premium Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* GLOBAL CRITICAL STYLES (Forced) */
+.text-gold-gradient {
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+.animate-shine {
+  animation: shine 3s infinite !important;
+}
+
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Base Styles */
+@layer base {
+  :root {
+    --font-primary: 'Inter', system-ui, sans-serif;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#020617] text-slate-200 overflow-x-hidden antialiased;
+    font-family: var(--font-primary);
+    cursor: default;
+  }
+
+  /* Add Noise Texture to Body */
+  body::after {
+    content: "";
+    @apply bg-noise;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    @apply font-bold leading-tight -tracking-wide;
+  }
+}
+
+/* Components Layer */
+@layer components {
+
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-[#0f172a]/60 backdrop-blur-xl border border-white/10 rounded-3xl transition-all duration-500 relative overflow-hidden;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-card::before {
+    content: "";
+    @apply absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent;
+  }
+
+  .glass-card:hover {
+    @apply bg-[#1e293b]/70 border-yellow-500/30 -translate-y-2;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(250, 204, 21, 0.1);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] to-[#b38728] text-black font-bold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 px-8 py-4 whitespace-nowrap;
+  }
+
+  /* Shine effect for primary button */
+  .btn-primary::after {
+    content: "";
+    @apply absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] animate-shine;
+  }
+
+  .btn-secondary {
+    @apply relative overflow-hidden border border-[#bf953f]/50 text-[#fcf6ba] font-bold rounded-xl hover:bg-[#bf953f]/10 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 px-8 py-4 whitespace-nowrap;
+  }
+
+  /* Form Elements */
+  .input-field {
+    @apply w-full px-5 py-4 text-base text-white bg-[#0f172a] border border-slate-700/50 rounded-2xl outline-none transition-all duration-300;
+  }
+
+  .input-field:focus {
+    @apply border-yellow-400 ring-2 ring-yellow-400/10;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    @apply fixed inset-0 bg-[#020617]/90 backdrop-blur-sm flex items-center justify-center z-[100] p-4;
+  }
+
+  .modal-content {
+    @apply bg-[#0f172a] border border-slate-700/50 rounded-3xl w-full max-w-[450px] relative shadow-2xl overflow-y-auto max-h-[90vh];
+  }
+}
+
+/* Utilities Layer */
+@layer utilities {
+
+  /* Legacy mapping support */
+  .text-yellow-gradient {
+    @apply text-gold-gradient;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(250, 204, 21, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250, 204, 21, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .radial-glow {
+    background: radial-gradient(ellipse at center, rgba(250, 204, 21, 0.08) 0%, transparent 70%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
