@@ -13,11 +13,12 @@ export default defineConfig({
       manifest: {
         name: 'HqSport',
         short_name: 'HqSport',
-        description: 'Your Sports App',
+        description: 'Premium Pickleball Court Booking in Kolkata',
         theme_color: '#ffffff',
-        background_color: '#ffffff',
+        background_color: '#000000', // Matches your site's black background
         display: 'standalone',
-        start_url: '/HqSport/',
+        scope: '/',        // Updated for hqsport.in
+        start_url: '/',    // Updated for hqsport.in
         icons: [
           {
             src: 'pwa-192x192.png',
@@ -28,11 +29,11 @@ export default defineConfig({
             src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable' // This makes the icon look good on Android
+            purpose: 'any maskable'
           }
         ]
       }
     })
   ],
-  base: '/HqSport/',
+  base: '/', // CRITICAL: Ensures assets load from hqsport.in/ instead of hqsport.in/HqSport/
 })
