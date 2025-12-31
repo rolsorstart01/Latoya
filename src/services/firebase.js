@@ -270,6 +270,37 @@ export const setUserRole = async (userId, role) => {
     }
 };
 
+export const banUser = async (userId) => {
+    if (isDemoMode) {
+        return { error: null };
+    }
+    try {
+        await updateDoc(doc(db, 'users', userId), {
+            banned: true,
+            bannedAt: serverTimestamp()
+        });
+        return { error: null };
+    } catch (error) {
+        return { error: error.message };
+    }
+};
+
+export const unbanUser = async (userId) => {
+    if (isDemoMode) {
+        return { error: null };
+    }
+    try {
+        await updateDoc(doc(db, 'users', userId), {
+            banned: false,
+            bannedAt: null
+        });
+        return { error: null };
+    } catch (error) {
+        return { error: error.message };
+    }
+};
+
+
 // Chat Functions (using Firestore instead of Realtime DB to avoid additional errors)
 export const sendChatMessage = async (roomId, message) => {
     if (isDemoMode) {

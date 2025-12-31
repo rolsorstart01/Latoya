@@ -11,7 +11,7 @@ import {
     getBroadcasts, getGalleryImages, addGalleryImage, deleteGalleryImage,
     cancelBooking, createDiscount, getDiscounts, deleteDiscount,
     createBooking, subscribeToBookings, subscribeToUsers, subscribeToDiscounts,
-    subscribeToBroadcasts, subscribeToGallery
+    subscribeToBroadcasts, subscribeToGallery, banUser, unbanUser
 } from '../services/firebase';
 import { formatCurrency } from '../services/razorpay';
 import { toast } from 'react-hot-toast';
@@ -109,6 +109,17 @@ const AdminPanel = () => {
         await setUserRole(userId, newRole);
         toast.success(`User role updated to ${newRole}`);
         fetchData();
+    };
+
+    const handleBanUser = async (userId) => {
+        if (!window.confirm("Are you sure you want to ban this user? They will not be able to access the platform.")) return;
+        await banUser(userId);
+        toast.success("User has been banned");
+    };
+
+    const handleUnbanUser = async (userId) => {
+        await unbanUser(userId);
+        toast.success("User has been unbanned");
     };
 
     const handleSendBroadcast = async () => {
@@ -544,6 +555,7 @@ const AdminPanel = () => {
                                             <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">User</th>
                                             <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Email</th>
                                             <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Role</th>
+                                            <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Status</th>
                                             <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Bookings</th>
                                             {isSuperAdmin && (
                                                 <th className="text-left py-3 px-4 text-gray-400 font-medium text-sm">Actions</th>
@@ -569,26 +581,56 @@ const AdminPanel = () => {
                                                         {u.role || 'user'}
                                                     </span>
                                                 </td>
+                                                <td className="py-3 px-4">
+                                                    {u.banned ? (
+                                                        <span className="badge text-xs bg-red-500/20 text-red-400 border-red-500/30">
+                                                            Banned
+                                                        </span>
+                                                    ) : (
+                                                        <span className="badge text-xs bg-green-500/20 text-green-400 border-green-500/30">
+                                                            Active
+                                                        </span>
+                                                    )}
+                                                </td>
                                                 <td className="py-3 px-4 text-gray-300">{u.totalBookings || 0}</td>
                                                 {isSuperAdmin && u.id !== user?.uid && (
                                                     <td className="py-3 px-4">
-                                                        {u.role === 'admin' ? (
-                                                            <button
-                                                                onClick={() => handleRoleChange(u.id, 'user')}
-                                                                className="text-red-400 hover:text-red-300 text-sm flex items-center gap-1"
-                                                            >
-                                                                <UserMinus className="w-4 h-4" />
-                                                                Remove Admin
-                                                            </button>
-                                                        ) : u.role !== 'superadmin' && (
-                                                            <button
-                                                                onClick={() => handleRoleChange(u.id, 'admin')}
-                                                                className="text-yellow-400 hover:text-yellow-300 text-sm flex items-center gap-1"
-                                                            >
-                                                                <UserPlus className="w-4 h-4" />
-                                                                Make Admin
-                                                            </button>
-                                                        )}
+                                                        <div className="flex items-center gap-2">
+                                                            {u.role === 'admin' ? (
+                                                                <button
+                                                                    onClick={() => handleRoleChange(u.id, 'user')}
+                                                                    className="text-red-400 hover:text-red-300 text-xs px-2 py-1 rounded bg-red-500/10 border border-red-500/20"
+                                                                >
+                                                                    <UserMinus className="w-3 h-3 inline mr-1" />
+                                                                    Remove Admin
+                                                                </button>
+                                                            ) : u.role !== 'superadmin' && (
+                                                                <button
+                                                                    onClick={() => handleRoleChange(u.id, 'admin')}
+                                                                    className="text-yellow-400 hover:text-yellow-300 text-xs px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/20"
+                                                                >
+                                                                    <UserPlus className="w-3 h-3 inline mr-1" />
+                                                                    Make Admin
+                                                                </button>
+                                                            )}
+                                                            {u.role !== 'superadmin' && (
+                                                                u.banned ? (
+                                                                    <button
+                                                                        onClick={() => handleUnbanUser(u.id)}
+                                                                        className="text-green-400 hover:text-green-300 text-xs px-2 py-1 rounded bg-green-500/10 border border-green-500/20"
+                                                                    >
+                                                                        Unban
+                                                                    </button>
+                                                                ) : (
+                                                                    <button
+                                                                        onClick={() => handleBanUser(u.id)}
+                                                                        className="text-red-400 hover:text-red-300 text-xs px-2 py-1 rounded bg-red-500/10 border border-red-500/20"
+                                                                    >
+                                                                        Ban User
+                                                                    </button>
+                                                                )
+                                                            )}
+                                                        </div>
                                                     </td>
                                                 )}
                                             </tr>
@@ -642,26 +684,6 @@ const AdminPanel = () => {
                         {/* Gallery Tab */}
                         {activeTab === 'gallery' && (
                             <div className="space-y-6 animate-fade-in">
-                                <div className="card p-6">
-                                    <h3 className="text-lg font-semibold text-white mb-4">Add Image</h3>
-                                    <div className="flex gap-3">
-                                        <input
-                                            type="url"
-                                            value={newImageUrl}
-                                            onChange={(e) => setNewImageUrl(e.target.value)}
-                                            placeholder="Enter image URL..."
-                                            className="input-field flex-1"
-                                        />
-                                        <button
-                                            onClick={handleAddImage}
-                                            disabled={!newImageUrl.trim()}
-                                            className="btn-gold"
-                                        >
-                                            Add Image
-                                        </button>
-                                    </div>
-                                </div>
-
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                     {gallery.map((image) => (
                                         <div key={image.id} className="relative group rounded-xl overflow-hidden">

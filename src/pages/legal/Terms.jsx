@@ -59,7 +59,27 @@ const Terms = () => {
 
                     <section>
                         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                            <span className="text-yellow-400">04.</span> Limitation of Liability
+                            <span className="text-yellow-400">04.</span> Equipment & Facilities
+                        </h2>
+                        <ul className="space-y-3 text-slate-400 leading-relaxed text-lg">
+                            <li className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 mt-2.5 flex-shrink-0"></div>
+                                <p><strong className="text-white">Paddle Rental:</strong> Paddles are available for rent at ₹250 per hour per paddle.</p>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 mt-2.5 flex-shrink-0"></div>
+                                <p><strong className="text-white">Court Damage:</strong> Any damage to courts, nets, or equipment caused by players will be subject to repair/replacement charges.</p>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 mt-2.5 flex-shrink-0"></div>
+                                <p>Players are responsible for the proper care and handling of all rented equipment.</p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                            <span className="text-yellow-400">05.</span> Limitation of Liability
                         </h2>
                         <p className="text-slate-400 leading-relaxed text-lg">
                             HQ Sport is not liable for any personal injury or loss of personal property while on the premises. Players engage in activities at their own risk.

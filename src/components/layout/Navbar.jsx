@@ -78,7 +78,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
                     {/* Social Buttons */}
                     <div className="flex items-center gap-3">
                         <a
-                            href="https://wa.me/918100144901"
+                            href="https://wa.me/12066788644"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-9 h-9 rounded-lg bg-[#25D366]/10 flex items-center justify-center text-[#25D366] hover:bg-[#25D366]/20 transition-all border border-[#25D366]/10"

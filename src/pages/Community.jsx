@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Search, Users, MessageCircle, Send, Loader2, ArrowRight } from 'lucide-react';
+import { Search, Users, MessageCircle, Send, Loader2, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getAllUsers, sendChatMessage, subscribeToChatRoom } from '../services/firebase';
 
@@ -120,6 +120,14 @@ const Community = ({ onLoginRequired }) => {
                                 </div>
                             </div>
 
+                            {/* Chat Rules Warning */}
+                            <div className="px-6 py-3 bg-red-500/10 border-y border-red-500/20 flex items-start gap-3">
+                                <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                                <p className="text-red-400 text-sm">
+                                    <strong>Chat Rules:</strong> Offensive language, abuse, or harassment will result in an immediate ban from the platform. Be respectful to all community members.
+                                </p>
+                            </div>
+
                             {/* Messages Area */}
                             <div className="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth bg-[#020617]/50">
                                 {!isAuthenticated ? (
@@ -234,9 +242,6 @@ const Community = ({ onLoginRequired }) => {
                                                 {player.totalBookings ? `${player.totalBookings} bookings` : 'New player'}
                                             </p>
                                         </div>
-                                        <button className="flex-shrink-0 w-12 h-12 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700 flex items-center justify-center transition-all">
-                                            <ArrowRight className="w-6 h-6" />
-                                        </button>
                                     </div>
                                 ))}
                             </div>

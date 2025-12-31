@@ -305,6 +305,23 @@ const Book = ({ onLoginRequired }) => {
                                         <span className="text-white">Court {selectedCourt}</span>
                                     </div>
                                     <div className="flex justify-between py-3 border-b border-slate-700">
+                                        <span className="text-slate-400 flex items-center gap-2"><Clock className="w-4 h-4" /> Time</span>
+                                        <span className="text-white">
+                                            {selectedSlots.length > 0 && (() => {
+                                                const sortedSlots = [...selectedSlots].sort();
+                                                const firstSlot = parseInt(sortedSlots[0].replace('slot-', ''));
+                                                const lastSlot = parseInt(sortedSlots[sortedSlots.length - 1].replace('slot-', ''));
+                                                const formatHour = (h) => {
+                                                    if (h === 0 || h === 24) return '12:00 AM';
+                                                    if (h === 12) return '12:00 PM';
+                                                    if (h > 12) return `${h - 12}:00 PM`;
+                                                    return `${h}:00 AM`;
+                                                };
+                                                return `${formatHour(firstSlot)} - ${formatHour(lastSlot + 1)}`;
+                                            })()}
+                                        </span>
+                                    </div>
+                                    <div className="flex justify-between py-3 border-b border-slate-700">
                                         <span className="text-slate-400">Duration</span>
                                         <span className="text-white">{selectedSlots.length} hour(s)</span>
                                     </div>
@@ -379,6 +396,15 @@ const Book = ({ onLoginRequired }) => {
                                             )}
                                             <span className="text-3xl font-bold text-yellow-400">{formatCurrency(totalAmount)}</span>
                                         </div>
+                                    </div>
+                                </div>
+
+                                {/* Paddle Rental Info */}
+                                <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3 mb-4">
+                                    <AlertCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <p className="text-blue-400 text-sm font-medium mb-1">Paddle Rental Available</p>
+                                        <p className="text-blue-300/80 text-xs">Paddles are available on-site for ₹250 per hour per paddle.</p>
                                     </div>
                                 </div>
 

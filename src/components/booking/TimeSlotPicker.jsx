@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { Clock, Check } from 'lucide-react';
+import { isToday } from 'date-fns';
 
 const TimeSlotPicker = ({ selectedSlots, onSlotSelect, bookedSlots = [], selectedDate }) => {
     // Generate time slots from 6 AM to 12 AM (midnight)
     const generateTimeSlots = () => {
         const slots = [];
+        const currentHour = new Date().getHours();
+        const isBookingToday = selectedDate && isToday(selectedDate);
+
         for (let hour = 6; hour <= 23; hour++) {
             const startHour = hour;
             const endHour = hour + 1;
@@ -15,6 +19,9 @@ const TimeSlotPicker = ({ selectedSlots, onSlotSelect, bookedSlots = [], selecte
             const price = hour < 13 ? 800 : 1200;
             const tier = hour < 13 ? 'morning' : 'evening';
 
+            // Check if slot is in the past (only for same-day bookings)
+            const isPast = isBookingToday && hour <= currentHour;
+
             slots.push({
                 id: `slot-${hour}`,
                 startHour,
@@ -22,7 +29,8 @@ const TimeSlotPicker = ({ selectedSlots, onSlotSelect, bookedSlots = [], selecte
                 endTime,
                 label: `${formatTime(hour)} - ${formatTime(endHour === 24 ? 0 : endHour)}`,
                 price,
-                tier
+                tier,
+                isPast
             });
         }
         return slots;
@@ -38,7 +46,8 @@ const TimeSlotPicker = ({ selectedSlots, onSlotSelect, bookedSlots = [], selecte
     const slots = generateTimeSlots();
 
     const handleSlotClick = (slot) => {
-        if (bookedSlots.includes(slot.id)) return;
+        // Prevent booking past slots or already booked slots
+        if (bookedSlots.includes(slot.id) || slot.isPast) return;
 
         if (selectedSlots.includes(slot.id)) {
             onSlotSelect(selectedSlots.filter(id => id !== slot.id));
@@ -76,8 +85,8 @@ const TimeSlotPicker = ({ selectedSlots, onSlotSelect, bookedSlots = [], selecte
                     <span className="text-sm text-gray-400">Evening (₹1200)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <span className="text-sm text-gray-400">Booked</span>
+                    <div className="w-3 h-3 rounded-full bg-gray-500"></div>
+                    <span className="text-sm text-gray-400">Unavailable</span>
                 </div>
             </div>
 
@@ -87,16 +96,18 @@ const TimeSlotPicker = ({ selectedSlots, onSlotSelect, bookedSlots = [], selecte
                     const isBooked = bookedSlots.includes(slot.id);
                     const isSelected = selectedSlots.includes(slot.id);
                     const isMorning = slot.tier === 'morning';
+                    const isPast = slot.isPast;
+                    const isDisabled = isBooked || isPast;
 
                     return (
                         <button
                             key={slot.id}
                             onClick={() => handleSlotClick(slot)}
-                            disabled={isBooked}
+                            disabled={isDisabled}
                             className={`
                 relative p-4 rounded-xl border transition-all duration-200
-                ${isBooked
-                                    ? 'bg-red-500/10 border-red-500/30 cursor-not-allowed'
+                ${isDisabled
+                                    ? 'bg-gray-500/10 border-gray-500/30 cursor-not-allowed opacity-50'
                                     : isSelected
                                         ? 'bg-yellow-500/20 border-yellow-500 shadow-lg shadow-yellow-500/10'
                                         : isMorning
@@ -123,20 +134,20 @@ const TimeSlotPicker = ({ selectedSlots, onSlotSelect, bookedSlots = [], selecte
                             {/* Price */}
                             <div className="flex items-center justify-between">
                                 <span className={`text-lg font-bold ${isBooked
-                                        ? 'text-red-400 line-through'
-                                        : isSelected
-                                            ? 'text-yellow-400'
-                                            : isMorning
-                                                ? 'text-emerald-400'
-                                                : 'text-yellow-400'
+                                    ? 'text-red-400 line-through'
+                                    : isSelected
+                                        ? 'text-yellow-400'
+                                        : isMorning
+                                            ? 'text-emerald-400'
+                                            : 'text-yellow-400'
                                     }`}>
                                     ₹{slot.price}
                                 </span>
                                 <span className={`text-xs px-2 py-0.5 rounded-full ${isBooked
-                                        ? 'bg-red-500/20 text-red-400'
-                                        : isMorning
-                                            ? 'bg-emerald-500/20 text-emerald-400'
-                                            : 'bg-yellow-500/20 text-yellow-400'
+                                    ? 'bg-red-500/20 text-red-400'
+                                    : isMorning
+                                        ? 'bg-emerald-500/20 text-emerald-400'
+                                        : 'bg-yellow-500/20 text-yellow-400'
                                     }`}>
                                     {isBooked ? 'Booked' : isMorning ? 'Morning' : 'Evening'}
                                 </span>

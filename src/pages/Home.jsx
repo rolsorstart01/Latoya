@@ -46,7 +46,7 @@ const Home = () => {
                 <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 mb-8 animate-fade-in backdrop-blur-md">
                         <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                        <span className="text-gold-gradient text-sm font-bold tracking-wide uppercase">Kolkata's First Premium Pickleball Arena</span>
+                        <span className="text-gold-gradient text-sm font-bold tracking-wide uppercase">Kolkata's Best Premium Pickleball Arena</span>
                     </div>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight tracking-tighter animate-fade-in-up">
@@ -75,15 +75,9 @@ const Home = () => {
                             Book a Court
                         </Link>
                         <Link to="/about" className="btn-secondary w-full sm:w-auto px-10 py-5 text-lg backdrop-blur-md group">
-                            <span className="relative z-10">Corporate Events</span>
+                            <span className="relative z-10">About Us</span>
                         </Link>
                     </div>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 animate-fade-in delay-500">
-                    <span className="text-xs uppercase tracking-widest">Scroll</span>
-                    <div className="w-px h-10 bg-gradient-to-b from-slate-500 to-transparent"></div>
                 </div>
             </section>
 
