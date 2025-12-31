@@ -230,7 +230,9 @@ const Community = ({ onLoginRequired }) => {
                                         </div>
                                         <div className="min-w-0 flex-1 space-y-1">
                                             <h3 className="font-bold text-white truncate text-xl group-hover:text-yellow-400 transition-colors">{player.displayName || 'Anonymous'}</h3>
-                                            <p className="text-sm text-slate-500 truncate">Member since {new Date().getFullYear()}</p>
+                                            <p className="text-sm text-slate-500 truncate">
+                                                {player.totalBookings ? `${player.totalBookings} bookings` : 'New player'}
+                                            </p>
                                         </div>
                                         <button className="flex-shrink-0 w-12 h-12 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700 flex items-center justify-center transition-all">
                                             <ArrowRight className="w-6 h-6" />

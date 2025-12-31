@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
-import { ArrowLeft, ArrowRight, Check, CreditCard, AlertCircle, Loader2, Shield, Clock, MapPin } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, CreditCard, AlertCircle, Loader2, Shield, Clock, MapPin, Tag, X } from 'lucide-react';
 import BookingCalendar from '../components/booking/BookingCalendar';
 import CourtSelector from '../components/booking/CourtSelector';
 import TimeSlotPicker from '../components/booking/TimeSlotPicker';
 import { useAuth } from '../context/AuthContext';
-import { createBooking, getBookingsForDate } from '../services/firebase';
+import { createBooking, getBookingsForDate, getDiscounts } from '../services/firebase';
 import { createPayment, formatCurrency } from '../services/razorpay';
 
 const Book = ({ onLoginRequired }) => {
@@ -22,6 +22,12 @@ const Book = ({ onLoginRequired }) => {
     const [error, setError] = useState('');
     const [bookingComplete, setBookingComplete] = useState(false);
     const [bookingId, setBookingId] = useState(null);
+
+    // Discount state
+    const [discountCode, setDiscountCode] = useState('');
+    const [appliedDiscount, setAppliedDiscount] = useState(null);
+    const [discountError, setDiscountError] = useState('');
+    const [applyingDiscount, setApplyingDiscount] = useState(false);
 
     useEffect(() => {
         const fetchBookings = async () => {
@@ -46,7 +52,40 @@ const Book = ({ onLoginRequired }) => {
         return total;
     };
 
-    const totalAmount = calculateTotal();
+    const baseAmount = calculateTotal();
+    const discountAmount = appliedDiscount ? Math.round(baseAmount * appliedDiscount.percent / 100) : 0;
+    const totalAmount = baseAmount - discountAmount;
+
+    const handleApplyDiscount = async () => {
+        if (!discountCode.trim()) return;
+
+        setApplyingDiscount(true);
+        setDiscountError('');
+
+        try {
+            const { discounts } = await getDiscounts();
+            const discount = discounts.find(d => d.code.toUpperCase() === discountCode.toUpperCase());
+
+            if (!discount) {
+                setDiscountError('Invalid discount code');
+            } else if (discount.usedCount >= discount.maxUses) {
+                setDiscountError('This discount code has reached its usage limit');
+            } else {
+                setAppliedDiscount(discount);
+                setDiscountError('');
+            }
+        } catch (err) {
+            setDiscountError('Failed to validate discount code');
+        }
+
+        setApplyingDiscount(false);
+    };
+
+    const handleRemoveDiscount = () => {
+        setAppliedDiscount(null);
+        setDiscountCode('');
+        setDiscountError('');
+    };
 
     const steps = [
         { number: 1, title: 'Date', icon: '📅' },
@@ -269,9 +308,77 @@ const Book = ({ onLoginRequired }) => {
                                         <span className="text-slate-400">Duration</span>
                                         <span className="text-white">{selectedSlots.length} hour(s)</span>
                                     </div>
-                                    <div className="flex justify-between py-3">
-                                        <span className="text-slate-400">Total</span>
-                                        <span className="text-3xl font-bold text-yellow-400">{formatCurrency(totalAmount)}</span>
+                                    <div className="flex justify-between py-3 border-b border-slate-700">
+                                        <span className="text-slate-400">Subtotal</span>
+                                        <span className="text-white">{formatCurrency(baseAmount)}</span>
+                                    </div>
+
+                                    {/* Discount Code Section */}
+                                    {!appliedDiscount ? (
+                                        <div className="pt-2">
+                                            <label className="block text-sm text-slate-400 mb-2 flex items-center gap-2">
+                                                <Tag className="w-4 h-4" />
+                                                Have a discount code?
+                                            </label>
+                                            <div className="flex gap-2">
+                                                <input
+                                                    type="text"
+                                                    value={discountCode}
+                                                    onChange={(e) => setDiscountCode(e.target.value.toUpperCase())}
+                                                    onKeyPress={(e) => e.key === 'Enter' && handleApplyDiscount()}
+                                                    placeholder="Enter code"
+                                                    className="flex-1 input-field py-2 px-4 text-sm uppercase"
+                                                />
+                                                <button
+                                                    onClick={handleApplyDiscount}
+                                                    disabled={!discountCode.trim() || applyingDiscount}
+                                                    className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-medium rounded-lg text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                                >
+                                                    {applyingDiscount ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Apply'}
+                                                </button>
+                                            </div>
+                                            {discountError && (
+                                                <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
+                                                    <AlertCircle className="w-3 h-3" />
+                                                    {discountError}
+                                                </p>
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <div className="pt-2">
+                                            <div className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/30 rounded-lg">
+                                                <div className="flex items-center gap-2">
+                                                    <Tag className="w-4 h-4 text-green-400" />
+                                                    <div>
+                                                        <p className="text-green-400 font-mono font-bold text-sm">{appliedDiscount.code}</p>
+                                                        <p className="text-green-400/70 text-xs">{appliedDiscount.percent}% discount applied</p>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    onClick={handleRemoveDiscount}
+                                                    className="p-1 hover:bg-red-500/20 rounded text-slate-400 hover:text-red-400 transition-colors"
+                                                >
+                                                    <X className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {appliedDiscount && (
+                                        <div className="flex justify-between py-2 text-green-400">
+                                            <span>Discount ({appliedDiscount.percent}%)</span>
+                                            <span>-{formatCurrency(discountAmount)}</span>
+                                        </div>
+                                    )}
+
+                                    <div className="flex justify-between py-3 pt-4 border-t border-slate-600">
+                                        <span className="text-slate-400 font-semibold">Total</span>
+                                        <div className="text-right">
+                                            {appliedDiscount && (
+                                                <div className="text-slate-500 line-through text-sm mb-1">{formatCurrency(baseAmount)}</div>
+                                            )}
+                                            <span className="text-3xl font-bold text-yellow-400">{formatCurrency(totalAmount)}</span>
+                                        </div>
                                     </div>
                                 </div>
 

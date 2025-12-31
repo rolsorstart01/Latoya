@@ -1,8 +1,85 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+
+  --color-gold-100: #FCEFA4;
+  --color-gold-200: #FFE5A0;
+  --color-gold-400: #D4AF37;
+  --color-gold-500: #C5A028;
+  --color-gold-600: #B8860B;
+  --color-gold-800: #996515;
+  --color-gold-900: #754B0B;
+
+  --color-obsidian: #020408;
+  --color-obsidian-light: #0A0F1C;
+
+  --animate-shine: shine 3s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-fade-in: fadeIn 0.8s ease-out forwards;
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  --animate-scale-in: scaleIn 0.5s ease-out forwards;
+
+  @keyframes shine {
+    0% {
+      left: -100%
+    }
+
+    100% {
+      left: 100%
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0)
+    }
+
+    50% {
+      transform: translateY(-10px)
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0
+    }
+
+    100% {
+      opacity: 1
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px)
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  }
+
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95)
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1)
+    }
+  }
+}
 
 /* ========================================
    HQ SPORT - HYPER-LUXURY DESIGN SYSTEM V2
@@ -39,7 +116,7 @@
   }
 
   body {
-    @apply bg-[#020408] text-slate-200 antialiased overflow-x-hidden;
+    @apply bg-[#020408] text-[#e2e8f0] antialiased overflow-x-hidden;
     font-family: var(--font-sans);
     background-image:
       radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 70%),
@@ -82,7 +159,7 @@
 
   /* BUTTONS: "Gold Ingot" Style (Rounded) */
   .btn-primary {
-    @apply relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#D4AF37] via-[#FCEFA4] to-[#B8860B] text-black font-extrabold font-display uppercase tracking-wider rounded-full shadow-xl shadow-yellow-900/20 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-yellow-500/30;
+    @apply relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#D4AF37] via-[#FCEFA4] to-[#B8860B] text-black font-extrabold font-[var(--font-display)] uppercase tracking-wider rounded-full shadow-xl shadow-yellow-900/20 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-yellow-500/30;
   }
 
   /* Specular Highlight on Button */
@@ -92,12 +169,26 @@
   }
 
   .btn-secondary {
-    @apply relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-yellow-500/30 text-yellow-100 font-bold font-display uppercase tracking-wider rounded-full backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-yellow-400/50 hover:text-white active:scale-95;
+    @apply relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-yellow-500/30 text-yellow-100 font-bold font-[var(--font-display)] uppercase tracking-wider rounded-full backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-yellow-400/50 hover:text-white active:scale-95;
   }
 
   /* INPUTS: "Stealth" Style */
   .input-field {
-    @apply w-full px-6 py-4 bg-[#050912] border border-white/10 rounded-xl text-white placeholder-slate-600 outline-none transition-all duration-300 focus:border-yellow-500/50 focus:bg-[#0A0F1C] focus:shadow-[0_0_20px_rgba(212, 175, 55, 0.1)];
+    @apply w-full px-6 py-4 bg-[#050912] border border-white/10 rounded-xl text-white placeholder-[#475569] outline-none transition-all duration-300 focus:border-yellow-500/50 focus:bg-[#0A0F1C];
+  }
+
+  /* MODALS */
+  .modal-overlay {
+    @apply fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md;
+  }
+
+  .modal-content {
+    @apply relative w-full max-w-lg bg-[#0A0F1C] border border-white/10 rounded-3xl shadow-2xl;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.05);
+  }
+
+  .btn-gold {
+    @apply relative overflow-hidden flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-extrabold rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-yellow-500/20 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 }
 

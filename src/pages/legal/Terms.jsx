@@ -67,7 +67,7 @@ const Terms = () => {
                     </section>
 
                     <div className="pt-8 border-t border-slate-800 text-center text-slate-500">
-                        <p>Questions? Contact us at legal@hqsport.in</p>
+                        <p>Questions? Contact us at hqsports.41@gmail.com</p>
                     </div>
                 </div>
             </div>

@@ -91,7 +91,7 @@ const Footer = () => {
 
             {/* Bottom */}
             <div className="border-t border-slate-800/50">
-                <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="max-w-6xl mx-auto px-6 py-6 pb-24 md:pb-6 md:pr-24 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-slate-500 text-sm">
                         © {new Date().getFullYear()} HQ Sport. All rights reserved.
                     </p>

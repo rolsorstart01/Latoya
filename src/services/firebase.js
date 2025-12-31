@@ -378,7 +378,152 @@ export const getBroadcasts = async () => {
     }
 };
 
-// Custom onAuthStateChanged wrapper for demo mode
+// Discount Functions
+export const createDiscount = async (discountData) => {
+    if (isDemoMode) {
+        return { id: 'demo-' + Date.now(), error: null };
+    }
+    try {
+        const docRef = await addDoc(collection(db, 'discounts'), {
+            ...discountData,
+            createdAt: serverTimestamp(),
+            active: true
+        });
+        return { id: docRef.id, error: null };
+    } catch (error) {
+        return { id: null, error: error.message };
+    }
+};
+
+export const getDiscounts = async () => {
+    if (isDemoMode) {
+        return { discounts: [], error: null };
+    }
+    try {
+        const q = query(collection(db, 'discounts'), orderBy('createdAt', 'desc'));
+        const snapshot = await getDocs(q);
+        const discounts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return { discounts, error: null };
+    } catch (error) {
+        return { discounts: [], error: error.message };
+    }
+};
+
+export const deleteDiscount = async (discountId) => {
+    if (isDemoMode) {
+        return { error: null };
+    }
+    try {
+        await deleteDoc(doc(db, 'discounts', discountId));
+        return { error: null };
+    } catch (error) {
+        return { error: error.message };
+    }
+};
+
+// Booking Management
+export const cancelBooking = async (bookingId) => {
+    if (isDemoMode) {
+        return { error: null };
+    }
+    try {
+        await updateDoc(doc(db, 'bookings', bookingId), {
+            status: 'cancelled',
+            cancelledAt: serverTimestamp()
+        });
+        return { error: null };
+    } catch (error) {
+        return { error: error.message };
+    }
+};
+
+// Real-Time Listeners for Admin Panel
+export const subscribeToBookings = (callback) => {
+    if (isDemoMode || !db) {
+        callback([]);
+        return () => { };
+    }
+    try {
+        const q = query(collection(db, 'bookings'), orderBy('createdAt', 'desc'));
+        return onSnapshot(q, (snapshot) => {
+            const bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            callback(bookings);
+        });
+    } catch (error) {
+        console.error('Error subscribing to bookings:', error);
+        return () => { };
+    }
+};
+
+export const subscribeToUsers = (callback) => {
+    if (isDemoMode || !db) {
+        callback([]);
+        return () => { };
+    }
+    try {
+        const q = query(collection(db, 'users'), orderBy('createdAt', 'desc'));
+        return onSnapshot(q, (snapshot) => {
+            const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            callback(users);
+        });
+    } catch (error) {
+        console.error('Error subscribing to users:', error);
+        return () => { };
+    }
+};
+
+export const subscribeToDiscounts = (callback) => {
+    if (isDemoMode || !db) {
+        callback([]);
+        return () => { };
+    }
+    try {
+        const q = query(collection(db, 'discounts'), orderBy('createdAt', 'desc'));
+        return onSnapshot(q, (snapshot) => {
+            const discounts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            callback(discounts);
+        });
+    } catch (error) {
+        console.error('Error subscribing to discounts:', error);
+        return () => { };
+    }
+};
+
+
+export const subscribeToBroadcasts = (callback) => {
+    if (isDemoMode || !db) {
+        callback([]);
+        return () => { };
+    }
+    try {
+        const q = query(collection(db, 'broadcasts'), orderBy('createdAt', 'desc'));
+        return onSnapshot(q, (snapshot) => {
+            const broadcasts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            callback(broadcasts);
+        });
+    } catch (error) {
+        console.error('Error subscribing to broadcasts:', error);
+        return () => { };
+    }
+};
+
+export const subscribeToGallery = (callback) => {
+    if (isDemoMode || !db) {
+        callback([]);
+        return () => { };
+    }
+    try {
+        const q = query(collection(db, 'gallery'), orderBy('createdAt', 'desc'));
+        return onSnapshot(q, (snapshot) => {
+            const images = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            callback(images);
+        });
+    } catch (error) {
+        console.error('Error subscribing to gallery:', error);
+        return () => { };
+    }
+};
+
 const onAuthStateChangedWrapper = (authInstance, callback) => {
     if (isDemoMode || !authInstance) {
         // In demo mode, immediately call with null user

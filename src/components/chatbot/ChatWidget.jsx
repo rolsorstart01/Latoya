@@ -33,7 +33,7 @@ const ChatWidget = () => {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 pointer-events-none">
 
             {/* Chat Window */}
             <div className={`
@@ -43,10 +43,14 @@ const ChatWidget = () => {
                 rounded-[2rem] overflow-hidden
                 backdrop-blur-xl bg-[#0f172a]/95 border border-white/10 shadow-2xl shadow-black/50
                 flex flex-col
+                pointer-events-auto
             `}>
 
                 {/* Header */}
-                <div className="p-5 border-b border-white/5 bg-gradient-to-r from-yellow-500/10 to-transparent flex items-center justify-between backdrop-blur-md">
+                <div
+                    onClick={() => { if (isOpen) setIsOpen(false); }}
+                    className="p-5 border-b border-white/5 bg-gradient-to-r from-yellow-500/10 to-transparent flex items-center justify-between backdrop-blur-md cursor-pointer pointer-events-auto"
+                >
                     <div className="flex items-center gap-3">
                         <div className="relative">
                             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg shadow-yellow-900/20">
@@ -146,7 +150,7 @@ const ChatWidget = () => {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="group relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 shadow-2xl shadow-yellow-500/30 hover:scale-105 active:scale-95 transition-all duration-300"
+                    className="group relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 shadow-2xl shadow-yellow-500/30 hover:scale-105 active:scale-95 transition-all duration-300 pointer-events-auto"
                 >
                     <div className="absolute inset-0 rounded-full bg-white/20 animate-ping opacity-20"></div>
                     <Sparkles className="w-8 h-8 text-black group-hover:rotate-12 transition-transform duration-300" />

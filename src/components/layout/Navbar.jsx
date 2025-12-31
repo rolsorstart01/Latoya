@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, LogOut, Calendar, Shield, ChevronDown, User } from 'lucide-react';
-import { FaInstagram } from 'react-icons/fa';
+import { Menu, X, LogOut, Calendar, Shield, ChevronDown, User, Instagram } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const Navbar = ({ onLoginClick, onSignupClick }) => {
@@ -37,7 +36,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
             ? 'py-3 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/50'
             : 'py-5 bg-gradient-to-b from-[#020617]/90 to-transparent'
             }`}>
-            <div className="max-w-7xl mx-auto px-4 md:px-6 relative flex items-center justify-between h-20">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 relative flex items-center h-20">
 
                 {/* Mobile Toggle */}
                 <button
@@ -47,8 +46,8 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
                     {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
 
-                {/* Logo - Centered Absolutely */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+                {/* Logo - Perfectly Centered */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 shrink-0">
                     <Link to="/" className="flex items-center">
                         <img
                             src="/logo.png"
@@ -58,13 +57,13 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
                     </Link>
                 </div>
 
-                {/* Desktop Nav - Left Side */}
-                <div className="hidden xl:flex items-center gap-8 z-40">
-                    {navLinks.slice(0, 3).map((link) => (
+                {/* Desktop Nav - Left Side (All links) */}
+                <div className="hidden xl:flex items-center gap-6 z-40 flex-1 order-1">
+                    {navLinks.map((link) => (
                         <Link
                             key={link.name}
                             to={link.path}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location.pathname === link.path
+                            className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap ${location.pathname === link.path
                                 ? 'text-yellow-400 bg-yellow-400/5'
                                 : 'text-slate-300 hover:text-white hover:bg-white/5'
                                 }`}
@@ -74,43 +73,33 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
                     ))}
                 </div>
 
-                {/* Desktop Nav - Right Side (Remaining Links + Actions) */}
-                <div className="hidden xl:flex items-center gap-8 z-40 ml-auto">
-                    {navLinks.slice(3).map((link) => (
-                        <Link
-                            key={link.name}
-                            to={link.path}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location.pathname === link.path
-                                ? 'text-yellow-400 bg-yellow-400/5'
-                                : 'text-slate-300 hover:text-white hover:bg-white/5'
-                                }`}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-
-                    <div className="w-px h-6 bg-slate-800 mx-2"></div>
+                {/* Desktop Nav - Right Side (Actions + Socials) */}
+                <div className="hidden xl:flex items-center gap-4 flex-1 justify-end z-40 order-3">
                     {/* Social Buttons */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                         <a
                             href="https://wa.me/918100144901"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 hover:bg-[#25D366]/20 transition-all group"
+                            className="w-9 h-9 rounded-lg bg-[#25D366]/10 flex items-center justify-center text-[#25D366] hover:bg-[#25D366]/20 transition-all border border-[#25D366]/10"
+                            title="WhatsApp Us"
                         >
-                            <span className="text-sm font-medium text-[#25D366] group-hover:text-[#4ade80] transition-colors">WhatsApp Us</span>
+                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.408 0 12.044c0 2.123.554 4.197 1.608 6.042L0 24l6.117-1.605a11.782 11.782 0 005.925 1.599h.005c6.633 0 12.043-5.408 12.048-12.046a11.803 11.803 0 00-3.693-8.527z" />
+                            </svg>
                         </a>
                         <a
                             href="https://instagram.com/hq.sportslab"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-9 h-9 rounded-lg bg-gradient-to-br from-pink-500/10 to-purple-500/10 flex items-center justify-center text-pink-400 hover:from-pink-500/20 hover:to-purple-500/20 transition-colors border border-pink-500/10"
+                            title="Instagram"
                         >
-                            <FaInstagram className="w-4 h-4" />
+                            <Instagram className="w-5 h-5" />
                         </a>
                     </div>
 
-                    <div className="w-px h-6 bg-slate-800"></div>
+                    <div className="w-px h-6 bg-slate-800 mx-1"></div>
 
                     {isAuthenticated ? (
                         <div className="relative">
@@ -133,7 +122,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
                             </button>
 
                             {profileOpen && (
-                                <div className="absolute right-0 mt-3 w-72 rounded-2xl bg-[#0f172a] border border-slate-700 shadow-2xl overflow-hidden animate-fade-in-up origin-top-right">
+                                <div className="absolute right-0 mt-3 w-72 rounded-2xl bg-[#0f172a] border border-slate-700 shadow-2xl overflow-hidden animate-fade-in-up origin-top-right z-50">
                                     <div className="p-5 border-b border-slate-700 bg-slate-800/30">
                                         <p className="text-white font-medium truncate text-lg">{userData?.displayName || 'User'}</p>
                                         <p className="text-slate-400 text-sm truncate mt-1">{user?.email}</p>
@@ -179,13 +168,13 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
                         <div className="flex items-center gap-3">
                             <button
                                 onClick={onLoginClick}
-                                className="px-5 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
                             >
                                 Sign In
                             </button>
                             <button
                                 onClick={onSignupClick}
-                                className="btn-primary text-sm py-2 px-6 shadow-lg shadow-yellow-500/10"
+                                className="btn-primary text-xs py-2 px-5 shadow-lg shadow-yellow-500/10 whitespace-nowrap"
                             >
                                 Sign Up
                             </button>
