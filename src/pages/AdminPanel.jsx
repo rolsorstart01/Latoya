@@ -632,8 +632,8 @@ const AdminPanel = () => {
                                                 </td>
                                                 <td className="py-3 px-4 text-gray-400">{u.email}</td>
                                                 <td className="py-3 px-4">
-                                                    <span className={`badge text-xs ${u.role === 'superadmin' ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' :
-                                                        u.role === 'admin' ? 'badge-gold' : 'bg-zinc-800 text-gray-400'
+                                                    <span className={`badge text-xs ${u.role === 'admin' ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' :
+                                                        u.role === 'user' ? 'badge-gold' : 'bg-zinc-800 text-gray-400'
                                                         }`}>
                                                         {u.role || 'user'}
                                                     </span>
@@ -661,7 +661,7 @@ const AdminPanel = () => {
                                                                     <UserMinus className="w-3 h-3 inline mr-1" />
                                                                     Remove Admin
                                                                 </button>
-                                                            ) : u.role !== 'superadmin' && (
+                                                            ) : u.role !== 'admin' && (
                                                                 <button
                                                                     onClick={() => handleRoleChange(u.id, 'admin')}
                                                                     className="text-yellow-400 hover:text-yellow-300 text-xs px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/20"
@@ -670,7 +670,7 @@ const AdminPanel = () => {
                                                                     Make Admin
                                                                 </button>
                                                             )}
-                                                            {u.role !== 'superadmin' && (
+                                                            {u.role !== 'admin' && (
                                                                 u.banned ? (
                                                                     <button
                                                                         onClick={() => handleUnbanUser(u.id)}
