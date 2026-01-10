@@ -1,0 +1,14 @@
+Website Details:
+
+* All logos and brand assets are available in the master folder shared via Drive.
+* WhatsApp Contact: +91 92663 94999
+* All reservations will be routed directly through WhatsApp.
+* Email ID: manifesthospitality@gmail.com
+
+* Google Maps Location (Latoyá):
+https://share.google/fOaFUnQSb1r7C44uC
+Whatsapp re-direct link: https://wa.me/919266394999
+We just need to add a section in the bottom for customer reviews.
+We can design the nav bar with movment and the map will be a proper box.
+And reviews you could possibly check on google, like take the 5 star ones?
+So build the latoya site using all info in assets folder.

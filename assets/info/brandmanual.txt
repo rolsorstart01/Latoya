@@ -1,0 +1,15 @@
+Latoya, a vibrant Latin American restaurant and bar, invites you on a culinary journey that blends the region's rich heritage with diverse global influences. Our menu offers a fusion of flavors, from Peru's Japanese-inspired cuisine to the Caribbean's Indian-spiced dishes, showcasing Latin America's culinary versatility. Our handcrafted cocktails, made with fresh and unique ingredients, are as visually striking as they are delicious. At Latoya, dining is more than just a meal—it's an experience. With a warm atmosphere and exceptional service, we invite you to explore the stories behind every dish.
+The Tone of Voice scale for Latoya positions sliders approximately at 50% toward Formal, 60% toward Professional, 70% toward Reserved, 50% toward Serious, 60% toward Exclusive, 40% toward Matter of fact, 50% toward Nontraditional, and 40% toward Idealistic.
+
+Visual Representation
+These percentages reflect the dots' midpoint positions on a 0-100% slider (0% left/Casual, 100% right/Formal), based on the provided image scale.
+
+Attribute	Percentage
+Casual to Formal	50% Formal
+Friendly to Professional	60% Professional
+High-Energy to Reserved	70% Reserved
+Fun to Serious	50% Serious
+Accessible to Exclusive	60% Exclusive
+Enthusiastic to Matter of fact	40% Matter of fact
+Traditional to Nontraditional	50% Nontraditional
+Realistic to Idealistic	40% Idealistic
