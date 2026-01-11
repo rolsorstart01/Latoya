@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latoyá</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/tt-modernoir-trial" rel="stylesheet">
+    <style>
+        :root {
+            --font-primary: 'Outfit', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-secondary);
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/interior/Latoya0033.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #reviews {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .reviews-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 250px;
+            /* Adjust based on content */
+        }
+
+        .review-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease-in-out;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            pointer-events: none;
+        }
+
+        .review-card.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .stars {
+            color: var(--color-gold);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .reviewer-name {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        /* --- Mobile Responsive Rules --- */
+
+        /* Fix horizontal overflow issues */
+        body,
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Navigation for Mobile */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                height: 92vh;
+                top: 8vh;
+                background-color: var(--color-black-green);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 1000;
+                box-shadow: -10px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links li {
+                opacity: 0;
+                margin: 20px 0;
+            }
+
+            /* Show burger menu on mobile */
+            .burger {
+                display: block;
+                cursor: pointer;
+            }
+
+            /* About Section Mobile */
+            .about-content {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            /* Menu Grid Mobile */
+            .menu-grid {
+                grid-template-columns: 1fr;
+                /* Single column for menu items */
+                gap: 15px;
+                padding: 0 10px;
+            }
+
+            /* Gallery Mobile */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 images per row */
+                gap: 5px;
+            }
+
+            /* Review Box Height Fix */
+            .reviews-container {
+                height: 350px;
+                /* More height for wrapped text on narrow screens */
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+        }
+
+        /* Animation for Burger Toggle (requires JS below) */
+        .nav-active {
+            transform: translateX(0%) !important;
+        }
+
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        .main-logo {
+  height: 100px;
+  width: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .main-logo {
+    height: 25px;
+  }
+}
+
+.social-link {
+    margin-top: 250px;
+  height: 32px;
+  width: auto;
+  margin-left: auto;
+  margin-right: 0;
+}
+@media screen and (max-width: 600px) {
+  .social-link {
+    height: 25px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+.nav-text {
+  font-size: 16px;
+}
+@media screen and (max-width: 600px) {
+  .nav-text {
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 768px) {
+    /* Adjust the font size of the menu links */
+    .nav-text {
+        font-size: 20px; /* Reduced from original size */
+        letter-spacing: 2px; /* Adds elegance to uppercase text */
+        text-transform: uppercase;
+    }
+
+    /* Reduce the vertical spacing between items */
+    .nav-links li {
+        margin: 15px 0; /* Adjust this to bring items closer together */
+        opacity: 0;
+    }
+
+    /* Optional: Fix the social link margin to keep it from pushing text down */
+    .social-link {
+        margin-top: 40px !important; 
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo"><img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo"></a>
+        <ul class="nav-links">
+            <li>
+                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link">
+                    <img src="../assets/images/logos/zomato.png" target="_blank" alt="Zomato"
+                        style="height: 32px; width: auto; margin-right: 15px;" id="zomato">
+                </a>
+                <a href="https://wa.me/919266394999" class="social-link">
+                    <img src="../assets/images/logos/whatsapp.png" target="_blank" alt="Whatsapp"
+                        style="height: 32px; width: auto; margin-right: 15px;" id="instagram">
+                </a>
+                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" class="social-link">
+                    <img src="../assets/images/logos/Insta.png" target="_blank" alt="Instagram"
+                        style="height: 32px; width: auto;" id="instagram">
+                </a>
+
+            </li>
+            <li><a href="../pages/index.html" class="nav-text">Home</a></li>
+            <li><a href="../pages/about.html" class="nav-text">About</a></li>
+            <li><a href="../pages/menu.html" class="nav-text">Menu</a></li>
+            <li><a href="../pages/gallery.html" class="nav-text">Gallery</a></li>
+            <li><a href="../pages/contact.html" class="nav-text">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>
+            <a href="#home">
+                <h1 style="font-family: 'TT Modernoir Trial', sans-serif;letter-spacing: 3px;">Latoyá</h1>
+            </a>
+        </h1>
+        <p style="font-family: 'TT Modernoir Trial', sans-serif;letter-spacing: 2px;">A CULINARY JOURNEY THROUGH LATIN AMERICA</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>Our Story</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="assets/images/interior/Latoya0003.jpg" alt="Latoyá Interior">
+            </div>
+            <div class="about-text">
+                <p>Latoyá, a vibrant Latin American restaurant and bar, invites you on a culinary journey that blends
+                    the region's rich heritage with diverse global influences. Our menu offers a fusion of flavors, from
+                    Peru's Japanese-inspired cuisine to the Caribbean's Indian-spiced dishes, showcasing Latin America's
+                    culinary versatility.</p>
+                <p>Our handcrafted cocktails, made with fresh and unique ingredients, are as visually striking as they
+                    are delicious. At Latoyá, dining is more than just a meal—it's an experience. With a warm atmosphere
+                    and exceptional service, we invite you to explore the stories behind every dish.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2>Menu</h2>
+        <!-- Food Menu -->
+        <div id="food-menu" class="menu-content active">
+
+            <div class="menu-category">
+                <h3>Appetizers</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Brazilian Cheese Bread</h4>
+                        <p>Parmesan and Tapioca Flour Bread served with Guasacaca, Chimichurri, and Black Bean Pate</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Three Cheese Quesadilla</h4>
+                        <p>Homemade Tortilla with Monterey Jack, Cheddar and Mozzarella, Avocado Sour Cream, Morita
+                            Salsa</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Stuffed Guero Peppers</h4>
+                        <p>Batter Fried Guero Pepper with Adobo Bean and Mozzarella stuffing, Tomato & Habanero Salsa
+                        </p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Guacamole Molcajete</h4>
+                        <p>Freshly pounded Guacamole served with Totopos, Rice Crisps and Sago Crisps</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Nachos Divino</h4>
+                        <p>Tortilla Chips, Refried Beans, melted Monterey Jack Cheese, Pico de Gallo, Guacamole, Sour
+                            Cream</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Chilli & Garlic Shrimps</h4>
+                        <p>Miso marinated Shrimps with Guajillo Chilli-Garlic Butter served with Sourdough</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Tacos and Tostadas</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Pineapple, Avocado and Burrata Tostada</h4>
+                        <p>Pineapple-Guajillo Salsa, Avocado Sour Cream, Stracciatella, Chipotle Bean Paste</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mushroom Asada Taco</h4>
+                        <p>Roasted Oyster, Button and Shitake Mushrooms, Onion and Garlic Chips</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Citrusy Tuna Tartare Tostada</h4>
+                        <p>Yellow Fin Tuna, Grapefruit, Avocado, Sesame, Sour Cream, Chipotle Aioli</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pollo Pastor Taco</h4>
+                        <p>Charred Chicken, Achiote, Pasilla and Guajillo Chillies, Pineapple Habanero Salsa</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Baja Fish Taco</h4>
+                        <p>Beer Battered Fish served with Pickled Onions, Cabbage and Avocado</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mutton Birria Taco</h4>
+                        <p>Tender Braised Mutton served with a Birria Stew</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Mains</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Enchiladas</h4>
+                        <p>Stuffed Flour Tortillas, topped and baked with Monterey Jack and Pasilla-Guajillo Chilli
+                            Sauces</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Miso Glazed Panela</h4>
+                        <p>Miso marinated Grilled Panela served with Peruvian Green Rice and Seasonal Vegetables</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Chicken Saltado</h4>
+                        <p>Stir Fried Chicken and Peppers with Crispy Fried Rice, served with an Aji Amarillo Broth</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Brazilian Stew (Moqueca)</h4>
+                        <p>Creamy Coconut Stew with Prawns, Seabass and Salmon, Peppers, Garlic, Cilantro, Steamed Rice
+                        </p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Argentine Lamb Chops</h4>
+                        <p>Smoked Paprika & Cumin Roasted Lamb Chops with Grilled Potatoes, Vegetables, and Chimichurri
+                        </p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pescado Contramar</h4>
+                        <p>Whole Butterflied Fish grilled with Lemon-Parsley and Adobo marinades</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Desserts</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Gianduja Cheesecake</h4>
+                        <p>Gianduja Cheesecake and Oat Cookie covered in Dark Chocolate Ganache, Roasted Hazelnuts</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Churros Rellenos</h4>
+                        <p>Dark Chocolate, Coffee Caramel and Berry filled Churros, Sea Salt Dulce de Leche</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Rose & Berry Tres Leche</h4>
+                        <p>Sponge Cake soaked with Rose-infused Milk, Cranberry & Strawberry Compote</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bar Menu -->
+        <div id="bar-menu" class="menu-content">
+
+            <div class="menu-category">
+                <h3>Signature Cocktails</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Terra Madre <span class="price">₹895</span></h4>
+                        <p>Tequila | Mezcal | Beetroot | Pandan | Nutty & Earthy</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Coco Loco <span class="price">₹895</span></h4>
+                        <p>Mezcal | Coconut Liqueur | Pineapple | Citrus | Smokey & Tropical</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Papi Chulo <span class="price">₹845</span></h4>
+                        <p>Tequila | Cucumber | Cilantro | Jalapeno | Yuzu | Spicy & Savoury</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>El Dorado <span class="price">₹845</span></h4>
+                        <p>Whiskey | Martini Bianco | Palo Santo | Spiced & Woody</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Inca <span class="price">₹895</span></h4>
+                        <p>Mezcal | Pisco | Bell Pepper | Tomatillo | Habanero | Umami & Savoury</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Classic Cocktails</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Micheladas <span class="price">₹695</span></h4>
+                        <p>Mexican Beer | Tomato | Habanero | Tajin | Cayenne</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mezcal Sour <span class="price">₹895</span></h4>
+                        <p>Mezcal | Simple Syrup | Citrus | Vegan Foam</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pan Am Sour <span class="price">₹895</span></h4>
+                        <p>Bourbon Whiskey | Cachaca | Orange | Citrus | Malbec</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mezcal Negroni <span class="price">₹895</span></h4>
+                        <p>Mezcal | Sweet Vermouth | Campari | Maraschino</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Margaritas</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Classic Margarita <span class="price">₹745</span></h4>
+                        <p>Tequila | Orange Liqueur | Citrus</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pluma Margarita <span class="price">₹745</span></h4>
+                        <p>Tequila | Passionfruit | Prickly Pear | Plum</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mango & Jalapeno <span class="price">₹745</span></h4>
+                        <p>Tequila | Mango | Jalapeno | Citrus</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="assets/images/interior/DSC03731.jpg" alt="Gallery Image 1"
+                    loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/interior/DSC03739.jpg" alt="Gallery Image 2"
+                    loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/interior/DSC03743.jpg" alt="Gallery Image 3"
+                    loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/interior/Latoya0014.jpg" alt="Gallery Image 4"
+                    loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/interior/Latoya0033.jpg" alt="Gallery Image 5"
+                    loading="lazy"></div>
+            <div class="gallery-item"><img src="assets/images/interior/Latoya0059.jpg" alt="Gallery Image 6"
+                    loading="lazy"></div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <h2>What People Say</h2>
+        <div class="reviews-container">
+    <div class="review-card active">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"An incredible experience! The fusion of flavors is unlike anything I've tasted
+            in Delhi. The Lomo Saltado is a must-try."</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Priyansh S.</p>
+    </div>
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Vibrant atmosphere and amazing cocktails. Perfect for a weekend dinner with
+            friends. Highly recommend!"</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Ananya M.</p>
+    </div>
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Beautiful interiors and the staff is so warm and welcoming. A true gem in
+            Saket."</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Rahul K.</p>
+    </div>
+
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The nachos were exceptional. Everything was 10/10. There was a DJ playing and the vibe was great even though it was a weekday."</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Lakshita T.</p>
+    </div>
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Amazing food with authentic flavors, warm hospitality, and a perfect ambience. Truly one of the best dining experiences I’ve had!"</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Vishakha</p>
+    </div>
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The atmosphere strikes a perfect balance between cozy and contemporary. The staff was friendly, attentive, and well-informed."</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Elena</p>
+    </div>
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The culinary team clearly knows what they’re doing. Every dish showed impressive technical skill and respect for the ingredients."</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Alok S.</p>
+    </div>
+    <div class="review-card">
+        <div class="stars">★★★★☆</div>
+        <p class="review-text">"Service was impeccable. The Pao de queijo and the coco loco cocktail were all excellent. Overall a decent experience."</p>
+        <p style="margin-top:1rem; font-weight:bold;">- Udit M.</p>
+    </div>
+</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Visit Us</h2>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Contact Info</h3>
+                <div class="footer-links">
+                    <p><strong>Address:</strong> Latoyá, Saket, Delhi</p>
+                    <p><strong>Email:</strong> <a
+                            href="mailto:manifesthospitality@gmail.com">manifesthospitality@gmail.com</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919266394999" target="_blank">+91 92663
+                            94999</a></p>
+                </div>
+                <br>
+                <p style="font-size: 0.9rem;">Reservations managed via WhatsApp.</p>
+            </div>
+            <div class="footer-map">
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14014.966952932338!2d77.2199!3d28.5273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce1f7d90e0a5d%3A0x673f8b0051111111!2sSaket%2C%20New%20Delhi%2C%20Delhi%20110017!5e0!3m2!1sen!2sin!4v1614245678901!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-blue-grey);">
+            &copy; 2026 Latoyá. All rights reserved.
+        </div>
+    </section>
+    <script>
+        // --- Auto-Rotate Reviews Script ---
+        const reviews = document.querySelectorAll('.review-card');
+        let currentIndex = 0;
+
+        // Show the first one immediately (if you didn't add the class in HTML)
+        if(reviews.length > 0) {
+            reviews[0].classList.add('active');
+        }
+
+        function showNextReview() {
+            // Remove active class from current
+            reviews[currentIndex].classList.remove('active');
+            
+            // Move to next index
+            currentIndex = (currentIndex + 1) % reviews.length;
+            
+            // Add active class to next
+            reviews[currentIndex].classList.add('active');
+        }
+
+        // This will now start the rotation AFTER the first one is already visible
+        setInterval(showNextReview, 4000);
+        const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav-links');
+const navLinks = document.querySelectorAll('.nav-links li');
+
+burger.addEventListener('click', () => {
+    // Toggle Nav
+    nav.classList.toggle('nav-active');
+
+    // Animate Links
+    navLinks.forEach((link, index) => {
+        if (link.style.animation) {
+            link.style.animation = '';
+        } else {
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+        }
+    });
+
+    // Burger Animation
+    burger.classList.toggle('toggle');
+});
+
+// Close menu when a link is clicked
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        nav.classList.remove('nav-active');
+        burger.classList.remove('toggle');
+    });
+});
+    </script>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

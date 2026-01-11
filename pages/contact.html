@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latoyá</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/tt-modernoir-trial" rel="stylesheet">
+    <style>
+        :root {
+            --font-primary: 'Outfit', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-secondary);
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/interior/Latoya0033.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #reviews {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .reviews-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 250px;
+            /* Adjust based on content */
+        }
+
+        .review-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease-in-out;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            pointer-events: none;
+        }
+
+        .review-card.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .stars {
+            color: var(--color-gold);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .reviewer-name {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        /* --- Mobile Responsive Rules --- */
+
+        /* Fix horizontal overflow issues */
+        body,
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Navigation for Mobile */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                height: 92vh;
+                top: 8vh;
+                background-color: var(--color-black-green);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 1000;
+                box-shadow: -10px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links li {
+                opacity: 0;
+                margin: 20px 0;
+            }
+
+            /* Show burger menu on mobile */
+            .burger {
+                display: block;
+                cursor: pointer;
+            }
+
+            /* About Section Mobile */
+            .about-content {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            /* Menu Grid Mobile */
+            .menu-grid {
+                grid-template-columns: 1fr;
+                /* Single column for menu items */
+                gap: 15px;
+                padding: 0 10px;
+            }
+
+            /* Gallery Mobile */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 images per row */
+                gap: 5px;
+            }
+
+            /* Review Box Height Fix */
+            .reviews-container {
+                height: 350px;
+                /* More height for wrapped text on narrow screens */
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+        }
+
+        /* Animation for Burger Toggle (requires JS below) */
+        .nav-active {
+            transform: translateX(0%) !important;
+        }
+
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        .main-logo {
+  height: 100px;
+  width: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .main-logo {
+    height: 25px;
+  }
+}
+
+.social-link {
+    margin-top: 250px;
+  height: 32px;
+  width: auto;
+  margin-left: auto;
+  margin-right: 0;
+}
+@media screen and (max-width: 600px) {
+  .social-link {
+    height: 25px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+.nav-text {
+  font-size: 16px;
+}
+@media screen and (max-width: 600px) {
+  .nav-text {
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 768px) {
+    /* Adjust the font size of the menu links */
+    .nav-text {
+        font-size: 20px; /* Reduced from original size */
+        letter-spacing: 2px; /* Adds elegance to uppercase text */
+        text-transform: uppercase;
+    }
+
+    /* Reduce the vertical spacing between items */
+    .nav-links li {
+        margin: 15px 0; /* Adjust this to bring items closer together */
+        opacity: 0;
+    }
+
+    /* Optional: Fix the social link margin to keep it from pushing text down */
+    .social-link {
+        margin-top: 40px !important; 
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo"><img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo"></a>
+        <ul class="nav-links">
+            <li>
+                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link">
+                    <img src="../assets/images/logos/zomato.png" target="_blank" alt="Zomato"
+                        style="height: 32px; width: auto; margin-right: 15px;" id="zomato">
+                </a>
+                <a href="https://wa.me/919266394999" class="social-link">
+                    <img src="../assets/images/logos/whatsapp.png" target="_blank" alt="Whatsapp"
+                        style="height: 32px; width: auto; margin-right: 15px;" id="instagram">
+                </a>
+                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" class="social-link">
+                    <img src="../assets/images/logos/Insta.png" target="_blank" alt="Instagram"
+                        style="height: 32px; width: auto;" id="instagram">
+                </a>
+
+            </li>
+            <li><a href="../pages/index.html" class="nav-text">Home</a></li>
+            <li><a href="../pages/about.html" class="nav-text">About</a></li>
+            <li><a href="../pages/menu.html" class="nav-text">Menu</a></li>
+            <li><a href="../pages/gallery.html" class="nav-text">Gallery</a></li>
+            <li><a href="../pages/contact.html" class="nav-text">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 id="visitus">Visit Us</h2>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Contact Info</h3>
+                <div class="footer-links">
+                    <p><strong>Address:</strong> Latoyá, Saket, Delhi</p>
+                    <p><strong>Email:</strong> <a
+                            href="mailto:manifesthospitality@gmail.com" target="_blank">manifesthospitality@gmail.com</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919266394999" target="_blank">+91 92663
+                            94999</a></p>
+                    <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link">
+                        <img src="../assets/images/logos/zomato.png" target="_blank" alt="Zomato" style="height: 32px; width: auto; margin-right: 15px;" id="zomato">
+                    </a>
+                    <a href="https://wa.me/919266394999" class="social-link">
+                    <img src="../assets/images/logos/whatsapp.png" target="_blank" alt="Whatsapp" style="height: 32px; width: auto; margin-right: 15px;" id="instagram">
+                </a>
+                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" class="social-link">
+                    <img src="../assets/images/logos/Insta.png" target="_blank" alt="Instagram" style="height: 32px; width: auto;" id="instagram">
+                </a>
+                </div>
+                <br>
+                <p style="font-size: 0.9rem;">Reservations managed via WhatsApp.</p>
+            </div>
+            <div class="footer-map">
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14014.966952932338!2d77.2199!3d28.5273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce1f7d90e0a5d%3A0x673f8b0051111111!2sSaket%2C%20New%20Delhi%2C%20Delhi%20110017!5e0!3m2!1sen!2sin!4v1614245678901!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-blue-grey);">
+            &copy; 2026 Latoyá. All rights reserved.
+        </div>
+    </section>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
