@@ -8,66 +8,86 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuContents = document.querySelectorAll('.menu-content');
     const reviews = document.querySelectorAll('.review-card');
 
-    // --- 1. Scroll Effect ---
-    // Adds a 'scrolled' class when scrolling past 50px [cite: 1, 2]
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    // --- 1. Page & Scroll Logic ---
+    // Check if the current page is the Home Page
+    const isHomePage = window.location.pathname === '/' || 
+                       window.location.pathname.endsWith('index.html') || 
+                       window.location.pathname === '/Latoya/'; // Adjust based on your folder structure
+
+    // Initial State: If not home page, always show as scrolled
+    const setInitialNavState = () => {
+        if (!isHomePage) {
             nav.classList.add('scrolled');
+        } else if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        }
+    };
+
+    setInitialNavState();
+
+    // Handle Scrolling
+    window.addEventListener('scroll', () => {
+        if (isHomePage) {
+            // On home page, toggle based on scroll position
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                // Only remove if the mobile menu isn't open
+                if (!navLinksContainer.classList.contains('nav-active')) {
+                    nav.classList.remove('scrolled');
+                }
+            }
         } else {
-            nav.classList.remove('scrolled');
+            // On other pages, keep it scrolled regardless
+            nav.classList.add('scrolled');
         }
     });
 
     // --- 2. Mobile Menu Logic ---
     const toggleMenu = () => {
-    // 1. Toggle the mobile menu overlay
-    navLinksContainer.classList.toggle('nav-active');
+        // Toggle the mobile menu overlay
+        navLinksContainer.classList.toggle('nav-active');
 
-    // 2. ONLY ON MOBILE: Toggle the 'scrolled' class when burger is clicked
-    if (window.innerWidth <= 768) {
-        if (navLinksContainer.classList.contains('nav-active')) {
-            nav.classList.add('scrolled');
-        } else {
-            // Only remove it if the user is actually at the top of the page
-            if (window.scrollY <= 50) {
+        // Animation for Links
+        navLinksItems.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+
+        // Burger Icon Animation
+        burger.classList.toggle('toggle');
+
+        // Manage nav background when menu is open on Home Page
+        if (isHomePage && window.scrollY <= 50) {
+            if (navLinksContainer.classList.contains('nav-active')) {
+                nav.classList.add('scrolled');
+            } else {
                 nav.classList.remove('scrolled');
             }
         }
-    }
-
-    // 3. Animate Links
-    navLinksItems.forEach((link, index) => {
-        if (link.style.animation) {
-            link.style.animation = '';
-        } else {
-            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-        }
-    });
-
-    // 4. Burger Icon Animation
-    burger.classList.toggle('toggle');
-};
+    };
 
     if (burger) {
         burger.addEventListener('click', toggleMenu);
     }
 
-    // Close mobile menu when a link is clicked [cite: 6]
+    // Close mobile menu when a link is clicked
     navLinksItems.forEach(link => {
-    link.addEventListener('click', () => {
-        navLinksContainer.classList.remove('nav-active');
-        burger.classList.remove('toggle');
-        navLinksItems.forEach(item => item.style.animation = '');
-        
-        // Ensure background behaves correctly after clicking a link
-        if (window.scrollY <= 50) {
-            nav.classList.remove('scrolled');
-        }
+        link.addEventListener('click', () => {
+            navLinksContainer.classList.remove('nav-active');
+            burger.classList.remove('toggle');
+            navLinksItems.forEach(item => item.style.animation = '');
+            
+            if (isHomePage && window.scrollY <= 50) {
+                nav.classList.remove('scrolled');
+            }
+        });
     });
-});
 
     // --- 3. Menu Tabs Logic ---
-    // Switches between categories like Food and Drinks [cite: 7, 8]
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             tabBtns.forEach(b => b.classList.remove('active'));
@@ -80,10 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 4. Auto-Rotate Reviews Script ---
-    // Cycles through reviews every 4 seconds [cite: 9, 12]
     if (reviews.length > 0) {
         let currentIndex = 0;
-        reviews[0].classList.add('active'); // Show first review [cite: 10]
+        reviews[0].classList.add('active'); 
 
         const showNextReview = () => {
             reviews[currentIndex].classList.remove('active');

@@ -1,0 +1,10 @@
+How to set it up on Vercel:
+Push your code to GitHub (keep your structure as it is).
+
+Import the project to Vercel.
+
+The Secret Step: During the "Configure Project" screen, look for Root Directory.
+
+Click "Edit" and select your pages folder.
+
+This tells Vercel: "Everything the user needs to see is inside here."

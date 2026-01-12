@@ -74,14 +74,15 @@ nav {
     align-items: center;
     padding: 1.5rem 5%;
     z-index: 1000;
-    transition: all var(--transition-speed);
-    color: var(--color-white); /* Initial color for transparent state */
+    transition: all var(--transition-speed) ease-in-out;
+    color: var(--color-white);
+    background-color: transparent; /* Explicitly start transparent */
 }
 
 nav.scrolled {
     background-color: var(--color-black-green);
-    padding: 1rem 5%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem 5%; /* Shrinks slightly when scrolling */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .logo {
@@ -285,4 +286,7 @@ section {
         justify-content: center;
         margin-bottom: 20px;
     }
+}
+.about-text {
+    font-size: 20px;
 }

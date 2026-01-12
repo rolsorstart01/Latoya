@@ -16,6 +16,37 @@
         :root {
             --font-primary: 'Outfit', sans-serif;
             --font-secondary: 'Playfair Display', serif;
+            /* Added fallbacks for your custom variables */
+            --color-gold: #D4AF37;
+            --color-black-green: #0a1a1a;
+        }
+
+        /* Essential Structural CSS to make your classes work */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
         }
 
         h1,
@@ -50,7 +81,6 @@
             max-width: 800px;
             margin: 0 auto;
             height: 250px;
-            /* Adjust based on content */
         }
 
         .review-card {
@@ -93,16 +123,13 @@
             color: #222;
         }
 
-        /* --- Mobile Responsive Rules --- */
-
-        /* Fix horizontal overflow issues */
         body,
         html {
             overflow-x: hidden;
             width: 100%;
+            margin: 0;
         }
 
-        /* Navigation for Mobile */
         @media screen and (max-width: 768px) {
             .nav-links {
                 position: absolute;
@@ -125,13 +152,19 @@
                 margin: 20px 0;
             }
 
-            /* Show burger menu on mobile */
             .burger {
                 display: block;
                 cursor: pointer;
             }
 
-            /* About Section Mobile */
+            /* Added visibility to burger lines */
+            .burger div {
+                width: 25px;
+                height: 3px;
+                background-color: #333;
+                margin: 5px;
+            }
+
             .about-content {
                 flex-direction: column;
                 padding: 10px;
@@ -142,25 +175,19 @@
                 height: auto;
             }
 
-            /* Menu Grid Mobile */
             .menu-grid {
                 grid-template-columns: 1fr;
-                /* Single column for menu items */
                 gap: 15px;
                 padding: 0 10px;
             }
 
-            /* Gallery Mobile */
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
-                /* 2 images per row */
                 gap: 5px;
             }
 
-            /* Review Box Height Fix */
             .reviews-container {
                 height: 350px;
-                /* More height for wrapped text on narrow screens */
             }
 
             .hero h1 {
@@ -173,114 +200,132 @@
             }
         }
 
-        /* Animation for Burger Toggle (requires JS below) */
         .nav-active {
             transform: translateX(0%) !important;
         }
 
-        @keyframes navLinkFade {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
+        .main-logo {
+            height: 100px;
+            width: auto;
+        }
 
-            to {
-                opacity: 1;
-                transform: translateX(0px);
+        @media screen and (max-width: 600px) {
+            .main-logo {
+                height: 40px;
             }
         }
-        .main-logo {
-  height: 100px;
-  width: auto;
-}
 
-@media screen and (max-width: 600px) {
-  .main-logo {
-    height: 25px;
-  }
-}
+        .social-link {
+            display: inline-block;
+            height: 32px;
+            width: auto;
+            /* Removed the 250px margin that was breaking the layout */
+        }
 
-.social-link {
-    margin-top: 250px;
-  height: 32px;
-  width: auto;
-  margin-left: auto;
-  margin-right: 0;
-}
-@media screen and (max-width: 600px) {
-  .social-link {
-    height: 25px;
-    margin-left: auto;
-    margin-right: 0;
-  }
-}
-.nav-text {
-  font-size: 16px;
-}
-@media screen and (max-width: 600px) {
-  .nav-text {
-    font-size: 8px;
-  }
-}
-@media screen and (max-width: 768px) {
-    /* Adjust the font size of the menu links */
-    .nav-text {
-        font-size: 20px; /* Reduced from original size */
-        letter-spacing: 2px; /* Adds elegance to uppercase text */
-        text-transform: uppercase;
-    }
+        @media screen and (max-width: 600px) {
+            .social-link {
+                height: 25px;
+            }
+        }
 
-    /* Reduce the vertical spacing between items */
-    .nav-links li {
-        margin: 15px 0; /* Adjust this to bring items closer together */
-        opacity: 0;
-    }
+        .nav-text {
+            font-size: 16px;
+            text-decoration: none;
+            color: inherit;
+        }
 
-    /* Optional: Fix the social link margin to keep it from pushing text down */
-    .social-link {
-        margin-top: 40px !important; 
-    }
-}
+        @media screen and (max-width: 600px) {
+            .nav-text {
+                font-size: 14px;
+            }
+        }
 
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            cursor: zoom-in;
+            /* Indicates the image is clickable */
+            transition: 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo"><img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo"></a>
+        <a href="../pages/index.html" class="logo">
+            <img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
+        </a>
         <ul class="nav-links">
             <li>
-                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link">
-                    <img src="../assets/images/logos/zomato.png" target="_blank" alt="Zomato"
-                        style="height: 32px; width: auto; margin-right: 15px;" id="zomato">
+                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" target="_blank" class="social-link">
+                    <img src="../assets/images/logos/zomato.png" alt="Zomato"
+                        style="height: 32px; width: auto; margin-right: 15px;">
                 </a>
-                <a href="https://wa.me/919266394999" class="social-link">
-                    <img src="../assets/images/logos/whatsapp.png" target="_blank" alt="Whatsapp"
-                        style="height: 32px; width: auto; margin-right: 15px;" id="instagram">
+                <a href="https://wa.me/919266394999" target="_blank" class="social-link">
+                    <img src="../assets/images/logos/whatsapp.png" alt="Whatsapp"
+                        style="height: 32px; width: auto; margin-right: 15px;">
                 </a>
-                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" class="social-link">
-                    <img src="../assets/images/logos/Insta.png" target="_blank" alt="Instagram"
-                        style="height: 32px; width: auto;" id="instagram">
+                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" target="_blank"
+                    class="social-link">
+                    <img src="../assets/images/logos/Insta.png" alt="Instagram" style="height: 32px; width: auto;">
                 </a>
-
             </li>
             <li><a href="../pages/index.html" class="nav-text">Home</a></li>
-            <li><a href="../pages/about.html" class="nav-text">About</a></li>
             <li><a href="../pages/menu.html" class="nav-text">Menu</a></li>
             <li><a href="../pages/gallery.html" class="nav-text">Gallery</a></li>
             <li><a href="../pages/contact.html" class="nav-text">Contact</a></li>
         </ul>
-        <div class="burger">
+        <div class="burger" onclick="document.querySelector('.nav-links').classList.toggle('nav-active')">
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
     </nav>
-        <!-- Gallery Section -->
+
     <section id="gallery">
-        <h2>Gallery</h2>
+        <h2 style="text-align: center;">Gallery</h2>
         <div class="gallery-grid">
             <div class="gallery-item"><img src="../assets/images/interior/DSC03731.jpg" alt="Gallery Image 1"
                     loading="lazy"></div>
@@ -296,13 +341,50 @@
                     loading="lazy"></div>
         </div>
     </section>
-    
+
     <section id="contact">
-        <div style="text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-blue-grey);">
+        <div style="text-align: center; margin-top: 3rem; font-size: 0.8rem; color: #666;">
             &copy; 2026 Latoyá. All rights reserved.
         </div>
     </section>
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const galleryImages = document.querySelectorAll('.gallery-item img');
+            const closeBtn = document.querySelector('.close-lightbox');
 
+            // Open Lightbox
+            galleryImages.forEach(image => {
+                image.addEventListener('click', () => {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = image.src;
+                    // Short delay to trigger CSS transition
+                    setTimeout(() => lightbox.classList.add('active'), 10);
+                });
+            });
+
+            // Close Lightbox (on X click, or clicking background)
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                setTimeout(() => {
+                    lightbox.style.display = 'none';
+                }, 300);
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target !== lightboxImg) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
     <script src="../js/script.js"></script>
 </body>
+
 </html>

@@ -131,17 +131,6 @@
                 cursor: pointer;
             }
 
-            /* About Section Mobile */
-            .about-content {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .about-image img {
-                width: 100%;
-                height: auto;
-            }
-
             /* Menu Grid Mobile */
             .menu-grid {
                 grid-template-columns: 1fr;
@@ -241,6 +230,46 @@
         margin-top: 40px !important; 
     }
 }
+/* Main Section Container */
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the Heading and content blocks */
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Content Wrapper */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Image Container - This must be 100% width to center its child */
+.about-image {
+    width: 100%; 
+    display: flex;
+    justify-content: center; /* Horizontally centers the image */
+    align-items: center;
+    margin-bottom: 30px;
+    /* Removed min-height: 100vh to prevent excessive empty space */
+}
+
+/* The actual Image */
+.about-imageimg {
+    border-radius: 20px;
+    width: 50%; /* Image takes up half the container width */
+    height: auto;
+    object-fit: cover;
+}
+
+/* Text Container */
+.about-text {
+    max-width: 800px; /* Keeps text at a readable length */
+    line-height: 1.8;
+}
 
     </style>
 </head>
@@ -249,7 +278,7 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo"><img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo"></a>
+        <a href="../pages/index.html" class="logo"><img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo"></a>
         <ul class="nav-links">
             <li>
                 <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link">
@@ -267,7 +296,6 @@
 
             </li>
             <li><a href="../pages/index.html" class="nav-text">Home</a></li>
-            <li><a href="../pages/about.html" class="nav-text">About</a></li>
             <li><a href="../pages/menu.html" class="nav-text">Menu</a></li>
             <li><a href="../pages/gallery.html" class="nav-text">Gallery</a></li>
             <li><a href="../pages/contact.html" class="nav-text">Contact</a></li>
@@ -282,7 +310,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <h1>
-            <a href="index.html" style="text-decoration: none; ">
+            <a href="../pages/index.html" style="text-decoration: none; ">
                 <h1 style="font-family: 'TT Modernoir Trial', sans-serif;letter-spacing: 3px; text-decoration: none;">
                     Latoyá</h1>
             </a>
@@ -296,7 +324,7 @@
         <h2>Our Story</h2>
         <div class="about-content">
             <div class="about-image">
-                <img src="../assets/images/interior/Latoya0003.jpg" alt="Latoyá Interior">
+                <img src="../assets/images/interior/Latoya0003.jpg" alt="Latoyá Interior" width="50%" height="auto" class="about-imageimg">
             </div>
             <div class="about-text">
                 <p>Latoyá, a vibrant Latin American restaurant and bar, invites you on a culinary journey that blends
@@ -309,116 +337,9 @@
             </div>
         </div>
     </section>
-    <!-- Menu Section -->
-    <section id="menu">
-        <h2>Menu</h2>
-        <!-- Food Menu -->
-        <div id="food-menu" class="menu-content active">
-
-            <div class="menu-category">
-                <h3>Appetizers</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <h4>Pão de Queijo</h4>
-                        <p>Brazilian Cheese Bread: Parmesan and Tapioca Flour Bread served with Guasacaca, Chimichurri,
-                            and Black Bean Pate</p>
-                        <img src="../assets/menu/Pão de Queijo (3).jpg"
-                            style="display: block; margin: 0 auto; width: 50%; height: auto; border-radius: 12px;"
-                            alt="Pão de Queijo">
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Chicken Anticuchos</h4>
-                        <p>Peruvian Skewered Chicken marinated in Aji Panca, served with Salsa Criolla and Grilled
-                            Potatoes</p>
-                        <img src="../assets/menu/Chicken Anticuchos_2 (2).jpg"
-                            style="display: block; margin: 0 auto; width: 50%; height: auto; border-radius: 12px;"
-                            alt="Chicken Anticuchos">
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3>Tacos and Tostadas</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <h4>Pescado Contramar</h4>
-                        <p>Grilled fish with a duo of red and green salsas, served on a crisp tostada with avocado and
-                            chipotle mayo</p>
-                        <img src="../assets/menu/Pescado Contramar_2 (2).jpg"
-                            style="display: block; margin: 0 auto; width: 50%; height: auto; border-radius: 12px;"
-                            alt="Pescado Contramar">
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3>Mains</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <h4>Alambre</h4>
-                        <p>Grilled meats with bacon, peppers, and onions topped with melted Oaxaca cheese, served with
-                            warm tortillas</p>
-                        <img src="../assets/menu/Alambre (5).jpg"
-                            style="display: block; margin: 0 auto; width: 50%; border-radius: 12px;" alt="Alambre">
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3>Desserts</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <h4>Chocolate, Chillies and Berries</h4>
-                        <p>A decadent dark chocolate ganache infused with a hint of spice and balanced with fresh berry
-                            compote</p>
-                        <img src="../assets/menu/Chocolate, Chillies and Berries (3) (1).jpg"
-                            style="display: block; margin: 0 auto; width: 50%; height: auto; border-radius: 12px;"
-                            alt="Chocolate, Chillies and Berries">
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Churros</h4>
-                        <p>Traditional Mexican fried dough dusted with cinnamon sugar, served with warm chocolate sauce
-                            and dulce de leche</p>
-                        <img src="../assets/menu/Churros (2).jpg"
-                            style="display: block; margin: 0 auto; width: 50%; border-radius: 12px;" alt="Churros">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Bar Menu -->
-        <div id="bar-menu" class="menu-content">
-
-            <div class="menu-category">
-                <h3>Signature Cocktails</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <h4>Canto General and Tostada</h4>
-                        <p>A sophisticated blend of Pisco, herbal liqueurs, and citrus, representing the spirit of the
-                            Latin poet</p>
-                        <img src="../assets/menu/Canto General and Tostada.jpg"
-                            style="display: block; margin: 0 auto; width: 50%; border-radius: 12px;"
-                            alt="Canto General and Tostada">
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>El Dorado</h4>
-                        <p>A rich, golden cocktail featuring aged tequila, honey-spiced notes, and a touch of aromatic
-                            bitters</p>
-                        <img src="../assets/menu/El Dorado (6).jpg"
-                            style="display: block; margin: 0 auto; width: 50%; border-radius: 12px;" alt="El Dorado">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Reviews Section -->
     <section id="reviews">
-        <h2>What People Say</h2>
+        <h2>Hear From others not us</h2>
         <div class="reviews-container">
             <div class="review-card active">
                 <div class="stars">★★★★★</div>
@@ -469,7 +390,53 @@
                     excellent. Overall a decent experience."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Udit M.</p>
             </div>
-        </div>
+            <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"The Trio of Ceviche was incredibly fresh and tangy—easily the standout of the night. It's rare to find such authentic Latin flavors in the heart of Delhi."</p>
+            <p style="margin-top:1rem; font-weight:bold;">- Neha G.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The cocktail program is top-notch. I tried the Papi Chulo, and the balance of tequila and citrus was bold and refreshing. The live Latin music really sets the mood."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Sameer V.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Absolutely loved the Brazilian Cheese Bread! It was soft, cheesy, and the accompanying dips were addictive. The outdoor seating area feels like a cozy, hidden garden."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Ritika J.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★☆</div>
+                <p class="review-text">"Excellent service and a very chic, upscale vibe. The Lamb Chops were perfectly cooked. Just wish the Hot Toddy had a bit more punch, but overall a great experience."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Ishaan R.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The desserts were true showstoppers. Both the Rose & Berry Tres Leches and the Chocolate with Chillies were as stunning to look at as they were delicious."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Mehak P.</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The Trio of Ceviche was a masterclass in fresh flavors—prawns, sea bass, and tuna all perfectly tangy. It’s rare to find such high-quality Latin American seafood in Delhi."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Neha G.</p>
+            </div>
+            
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Don't skip the desserts! The Rose & Berry Tres Leches is delicate and floral, while the Chocolate with Chillies offers a surprising and bold complexity. A visual and culinary treat."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Mehak P.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The Brazilian Cheese Bread is addictive! Pair it with the Papi Chulo cocktail—the rim salt made from kitchen discards is a brilliant sustainable touch that adds so much flavor."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Sameer V.</p>
+            </div>
+            </div>
     </section>
 
     <section id="contact">

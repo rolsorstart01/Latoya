@@ -25,3 +25,42 @@ Churros
 El Dorado
 
 Pescado Contramar
+
+<section id="contact">
+        <h2 id="visitus">Speak To Us</h2>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>For any queries, reservations, or feedback, please contact us at:</h3>
+                <div class="footer-links">
+                    <p><strong>Address:</strong><a href="https://www.google.com/maps/place/Latoy%C3%A1/@28.5285316,77.2032953,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce34f3e3173cd:0x930269ecd5f5a4f2!8m2!3d28.5285316!4d77.2058756!16s%2Fg%2F11wtkqllm7?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" target="_blank"> Latoyá, Saket, New Delhi</a> </p>
+                    <p><strong>Email:</strong> <a href="mailto:manifesthospitality@gmail.com">manifesthospitality@gmail.com</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919266394999" target="_blank">+91 92663 94999</a></p>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" target="_blank" class="social-link">
+                            <img src="../assets/images/logos/zomato.png" alt="Zomato">
+                        </a>
+                        <a href="https://wa.me/919266394999" target="_blank" class="social-link">
+                            <img src="../assets/images/logos/whatsapp.png" alt="Whatsapp">
+                        </a>
+                        <a href="https://www.instagram.com/latoya.in/" target="_blank" class="social-link">
+                            <img src="../assets/images/logos/Insta.png" alt="Instagram">
+                        </a>
+                    </div>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 20px; color: rgba(237, 230, 208, 0.7);">
+                    Reservations managed via WhatsApp.
+                </p>
+            </div>
+
+            <div class="footer-map">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.5123456789!2d77.21!3d28.52!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce1f1f1f1f1f1%3A0x123456789abcdef!2sSaket%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 5rem; font-size: 0.8rem; opacity: 0.6;">
+            © 2026 Latoyá. All rights reserved.
+        </div>
+    </section>
