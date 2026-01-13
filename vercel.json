@@ -15,11 +15,16 @@
       "source": "/pages/gallery.html",
       "destination": "/gallery",
       "permanent": true
+    },
+    {
+      "source": "/pages/index.html",
+      "destination": "/home",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/",
+      "source": "/home",
       "destination": "/pages/index.html"
     },
     {
