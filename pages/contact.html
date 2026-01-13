@@ -71,11 +71,12 @@
         }
 
         /* --- Burger Menu Visibility --- */
-        .burger { display: none; cursor: pointer; }
+        .burger { display: none;
+             cursor: pointer; }
         .burger div {
             width: 25px;
             height: 3px;
-            background-color: var(--color-cream); /* Burger lines now cream */
+            background-color: white; /* Burger lines now cream */
             margin: 5px;
         }
 
@@ -148,31 +149,21 @@
 
 <body>
 
-    <nav>
-        <a href="../pages/index.html" class="logo">
-            <img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
-        </a>
+<nav class="scrolled">
+        <a href="../pages/index.html" class="logo"><img src="../assets/images/logos/logo.png" alt="Latoyá" class="main-logo"></a>
         <ul class="nav-links">
             <li>
-                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" target="_blank" class="social-link">
-                    <img src="../assets/images/logos/zomato.png" alt="Zomato" style="height: 32px; width: auto;">
-                </a>
-                <a href="https://wa.me/919266394999" target="_blank" class="social-link">
-                    <img src="../assets/images/logos/whatsapp.png" alt="Whatsapp" style="height: 32px; width: auto;">
-                </a>
-                <a href="https://www.instagram.com/latoya.in/" target="_blank" class="social-link">
-                    <img src="../assets/images/logos/Insta.png" alt="Instagram" style="height: 32px; width: auto;">
-                </a>
+                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link"><img src="../assets/images/logos/zomato.png" alt="Zomato" style="height: 32px; width: auto; margin-right: 15px;"></a>
+                <a href="https://wa.me/919266394999" class="social-link"><img src="../assets/images/logos/whatsapp.png" alt="Whatsapp" style="height: 32px; width: auto; margin-right: 15px;"></a>
+                <a href="https://www.instagram.com/latoya.in/" class="social-link"><img src="../assets/images/logos/Insta.png" alt="Instagram" style="height: 32px; width: auto;"></a>
             </li>
             <li><a href="../pages/index.html" class="nav-text">Home</a></li>
             <li><a href="../pages/menu.html" class="nav-text">Menu</a></li>
             <li><a href="../pages/gallery.html" class="nav-text">Gallery</a></li>
             <li><a href="../pages/contact.html" class="nav-text">Contact</a></li>
         </ul>
-        <div class="burger" onclick="document.querySelector('.nav-links').classList.toggle('nav-active')">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
+        <div class="burger">
+            <div class="line1"></div><div class="line2"></div><div class="line3"></div>
         </div>
     </nav>
 
