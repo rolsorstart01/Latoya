@@ -1,43 +1,8 @@
 {
-  "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/pages/contact.html",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/pages/menu.html",
-      "destination": "/menu",
-      "permanent": true
-    },
-    {
-      "source": "/pages/gallery.html",
-      "destination": "/gallery",
-      "permanent": true
-    },
-    {
-      "source": "/pages/index.html",
-      "destination": "/home",
-      "permanent": true
-    }
-  ],
   "rewrites": [
-    {
-      "source": "/home",
-      "destination": "/pages/index.html"
-    },
-    {
-      "source": "/contact",
-      "destination": "/pages/contact.html"
-    },
-    {
-      "source": "/menu",
-      "destination": "/pages/menu.html"
-    },
-    {
-      "source": "/gallery",
-      "destination": "/pages/gallery.html"
-    }
+    { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/contact", "destination": "/pages/contact.html" },
+    { "source": "/menu", "destination": "/pages/menu.html" },
+    { "source": "/gallery", "destination": "/pages/gallery.html" }
   ]
 }
