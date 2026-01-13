@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/pages/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/pages/index.html" },
     { "source": "/contact", "destination": "/pages/contact.html" },
