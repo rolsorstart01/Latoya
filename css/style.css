@@ -292,4 +292,6 @@ section {
 }
 #contact{
     background-color: #1A1A1A, #1B3022, #4A0E0E;
+    justify-content: center;
+    align-items: center;
 }

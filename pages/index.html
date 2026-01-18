@@ -12,6 +12,14 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/tt-modernoir-trial" rel="stylesheet">
+    <link rel="preload" as="image" href="../assets/images/interior/Latoya0003.jpg">
+    <link rel="preload" as="image" href="../assets/images/interior/Latoya0014.jpg">
+    <link rel="preload" as="image" href="../assets/images/interior/Latoya0033.jpg">
+    <link rel="preload" as="image" href="../assets/images/interior/Latoya0059.jpg">
+    <link rel="preload" as="image" href="../assets/images/interior/DSC03731.jpg">
+    <link rel="preload" as="image" href="../assets/images/interior/DSC03739.jpg">
+    <link rel="preload" as="image" href="../assets/images/interior/DSC03743.jpg">
+    <link rel="preload" as="image" href="../assets/images/interior/DSC03747.jpg">
     <style>
         :root {
             --font-primary: 'Outfit', sans-serif;
@@ -178,103 +186,232 @@
                 transform: translateX(0px);
             }
         }
+
         .main-logo {
-  height: 100px;
-  width: auto;
-}
+            height: 100px;
+            width: auto;
+        }
 
-@media screen and (max-width: 600px) {
-  .main-logo {
-    height: 25px;
-  }
-}
+        @media screen and (max-width: 600px) {
+            .main-logo {
+                height: 25px;
+            }
+        }
 
-.social-link {
-    margin-top: 250px;
-  height: 32px;
-  width: auto;
-  margin-left: auto;
-  margin-right: 0;
-}
-@media screen and (max-width: 600px) {
-  .social-link {
-    height: 25px;
-    margin-left: auto;
-    margin-right: 0;
-  }
-}
-.nav-text {
-  font-size: 16px;
-}
-@media screen and (max-width: 600px) {
-  .nav-text {
-    font-size: 8px;
-  }
-}
-@media screen and (max-width: 768px) {
-    /* Adjust the font size of the menu links */
-    .nav-text {
-        font-size: 20px; /* Reduced from original size */
-        letter-spacing: 2px; /* Adds elegance to uppercase text */
-        text-transform: uppercase;
-    }
+        .social-link {
+            margin-top: 250px;
+            height: 32px;
+            width: auto;
+            margin-left: auto;
+            margin-right: 0;
+        }
 
-    /* Reduce the vertical spacing between items */
-    .nav-links li {
-        margin: 15px 0; /* Adjust this to bring items closer together */
-        opacity: 0;
-    }
+        @media screen and (max-width: 600px) {
+            .social-link {
+                height: 25px;
+                margin-left: auto;
+                margin-right: 0;
+            }
+        }
 
-    /* Optional: Fix the social link margin to keep it from pushing text down */
-    .social-link {
-        margin-top: 40px !important; 
-    }
-}
-/* Main Section Container */
-#about {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers the Heading and content blocks */
-    padding: 40px 20px;
-    text-align: center;
-}
+        .nav-text {
+            font-size: 16px;
+        }
 
-/* Content Wrapper */
-.about-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
+        @media screen and (max-width: 600px) {
+            .nav-text {
+                font-size: 8px;
+            }
+        }
 
-/* Image Container - This must be 100% width to center its child */
-.about-image {
-    width: 100%; 
-    display: flex;
-    justify-content: center; /* Horizontally centers the image */
-    align-items: center;
-    margin-bottom: 30px;
-    /* Removed min-height: 100vh to prevent excessive empty space */
-}
+        @media screen and (max-width: 768px) {
 
-/* The actual Image */
-.about-imageimg {
-    border-radius: 20px;
-    width: 50%; /* Image takes up half the container width */
-    height: auto;
-    object-fit: cover;
-}
+            /* Adjust the font size of the menu links */
+            .nav-text {
+                font-size: 20px;
+                /* Reduced from original size */
+                letter-spacing: 2px;
+                /* Adds elegance to uppercase text */
+                text-transform: uppercase;
+            }
 
-/* Text Container */
-.about-text {
-    max-width: 800px; /* Keeps text at a readable length */
-    line-height: 1.8;
-}
-nav.scrolled {
-    background-color: var(--color-black-green);
-    padding: 1rem 5%; /* Shrinks slightly when scrolling */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
+            /* Reduce the vertical spacing between items */
+            .nav-links li {
+                margin: 15px 0;
+                /* Adjust this to bring items closer together */
+                opacity: 0;
+            }
+
+            /* Optional: Fix the social link margin to keep it from pushing text down */
+            .social-link {
+                margin-top: 40px !important;
+            }
+
+        }
+
+        /* Main Section Container */
+        /* =========================================
+   ABOUT SECTION - SLIDER SETTINGS
+   ========================================= */
+
+        #about {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centers Heading and Content */
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+            width: 100%;
+            overflow: hidden;
+            /* Prevents horizontal scroll on the whole page */
+        }
+
+        /* Content Wrapper */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Slider Container: The "Window" */
+        .slider-container {
+            width: 60%;
+            max-width: 900px;
+            overflow: hidden;
+            /* Hides images outside the box */
+            border-radius: 20px;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+            /* Hardware acceleration to prevent lag */
+            transform: translateZ(0);
+        }
+
+        /* The actual horizontal strip of images */
+        .about-slider {
+            display: flex;
+            /* 900% because we have 8 images + 1 duplicate for the loop */
+            width: 900%;
+            animation: rotate-8 30s infinite ease-in-out;
+
+            /* FIX LAGGING: Move processing to the GPU */
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+        }
+
+        .about-slider img {
+            /* Each image is 1/9th of the 900% width strip */
+            width: calc(100% / 9);
+            height: 500px;
+            /* Fixed height for consistency */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Animation Logic: 8 Stages of 11.11% movement */
+        @keyframes rotate-8 {
+
+            0%,
+            10% {
+                transform: translateX(0);
+            }
+
+            12.5%,
+            22.5% {
+                transform: translateX(-11.111%);
+            }
+
+            25%,
+            35% {
+                transform: translateX(-22.222%);
+            }
+
+            37.5%,
+            47.5% {
+                transform: translateX(-33.333%);
+            }
+
+            50%,
+            60% {
+                transform: translateX(-44.444%);
+            }
+
+            62.5%,
+            72.5% {
+                transform: translateX(-55.555%);
+            }
+
+            75%,
+            85% {
+                transform: translateX(-66.666%);
+            }
+
+            87.5%,
+            97.5% {
+                transform: translateX(-77.777%);
+            }
+
+            100% {
+                transform: translateX(-88.888%);
+            }
+        }
+
+        /* Text Container */
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #333;
+            /* Adjust color as needed */
+        }
+
+        /* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+
+        @media screen and (max-width: 1024px) {
+            .slider-container {
+                width: 80%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            #about {
+                padding: 40px 15px;
+            }
+
+            .slider-container {
+                width: 100%;
+                /* More room on small screens */
+                border-radius: 10px;
+            }
+
+            .about-slider img {
+                height: 350px;
+                /* Shorter images for mobile */
+            }
+
+            .about-text p {
+                font-size: 1.05rem;
+                line-height: 1.2;
+            }
+        }
+
+        nav.scrolled {
+            background-color: var(--color-black-green);
+            padding: 1rem 5%;
+            /* Shrinks slightly when scrolling */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -282,66 +419,89 @@ nav.scrolled {
 
     <!-- Navigation -->
     <nav>
-    <a href="/" class="logo">
-        <img src="/assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
-    </a>
+        <a href="/" class="logo">
+            <img src="/assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
+        </a>
 
-    <ul class="nav-links">
-        <li>
-            <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link" target="_blank">
-                <img src="/assets/images/logos/zomato.png" alt="Zomato"
-                    style="height: 32px; width: auto; margin-right: 15px;">
-            </a>
+        <ul class="nav-links">
+            <li>
+                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link" target="_blank">
+                    <img src="/assets/images/logos/zomato.png" alt="Zomato"
+                        style="height: 32px; width: auto; margin-right: 15px;">
+                </a>
 
-            <a href="https://wa.me/919266394999" class="social-link" target="_blank">
-                <img src="/assets/images/logos/whatsapp.png" alt="Whatsapp"
-                    style="height: 32px; width: auto; margin-right: 15px;">
-            </a>
+                <a href="https://wa.me/919266394999" class="social-link" target="_blank">
+                    <img src="/assets/images/logos/whatsapp.png" alt="Whatsapp"
+                        style="height: 32px; width: auto; margin-right: 15px;">
+                </a>
 
-            <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet"
-               class="social-link" target="_blank">
-                <img src="/assets/images/logos/Insta.png" alt="Instagram"
-                    style="height: 32px; width: auto;">
-            </a>
-        </li>
+                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" class="social-link"
+                    target="_blank">
+                    <img src="/assets/images/logos/Insta.png" alt="Instagram" style="height: 32px; width: auto;">
+                </a>
+            </li>
 
-        <li><a href="/" class="nav-text">Home</a></li>
-        <li><a href="/menu" class="nav-text">Menu</a></li>
-        <li><a href="/gallery" class="nav-text">Gallery</a></li>
-        <li><a href="/contact" class="nav-text">Contact</a></li>
-    </ul>
+            <li><a href="/" class="nav-text">Home</a></li>
+            <li><a href="/menu" class="nav-text">Menu</a></li>
+            <li><a href="/gallery" class="nav-text">Gallery</a></li>
+            <li><a href="/contact" class="nav-text">Contact</a></li>
+        </ul>
 
-    <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
-</nav>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
 
 
     <!-- Hero Section -->
-<section id="home" class="hero">
-    <a href="../pages/index.html" style="text-decoration: none;">
-        <h2 style="font-family: 'TT Modernoir Trial', sans-serif; letter-spacing: 3px; color: white; margin: 0; font-size: 3rem; text-decoration: none;">
-            A CULINARY JOURNEY THROUGH LATIN AMERICA
-        </h2>
-    </a>
-</section>
-
+    <section id="home" class="hero">
+        <a href="../pages/index.html" style="text-decoration: none;">
+            <h2
+                style="font-family: 'TT Modernoir Trial', sans-serif; letter-spacing: 3px; color: white; margin: 0; font-size: 3rem; text-decoration: none;">
+                A CULINARY JOURNEY THROUGH LATIN AMERICA
+            </h2>
+        </a>
+    </section>
     <!-- About Section -->
     <section id="about">
-        <h2>Our Story</h2>
+        <h2>About Us</h2>
         <div class="about-content">
             <div class="about-image">
-                <img src="../assets/images/interior/Latoya0003.jpg" alt="Latoyá Interior" width="50%" height="auto" class="about-imageimg">
+                <div class="slider-container">
+                    <div class="about-slider">
+                        <img src="../assets/images/interior/Latoya0003.jpg" loading="eager" fetchpriority="high"
+                            alt="1">
+                        <img src="../assets/images/interior/Latoya0014.jpg" loading="eager" fetchpriority="high"
+                            alt="2">
+                        <img src="../assets/images/interior/Latoya0033.jpg" loading="eager" fetchpriority="high"
+                            alt="3">
+                        <img src="../assets/images/interior/Latoya0059.jpg" loading="eager" fetchpriority="high"
+                            alt="4">
+                        <img src="../assets/images/interior/DSC03731.jpg" loading="eager" fetchpriority="high" alt="5">
+                        <img src="../assets/images/interior/DSC03739.jpg" loading="eager" fetchpriority="high" alt="6">
+                        <img src="../assets/images/interior/DSC03743.jpg" loading="eager" fetchpriority="high" alt="7">
+                        <img src="../assets/images/interior/DSC03747.jpg" loading="eager" fetchpriority="high" alt="8">
+                        <img src="../assets/images/interior/Latoya0003.jpg" loading="eager" fetchpriority="high"
+                            alt="1">
+                    </div>
+                </div>
             </div>
+
             <div class="about-text">
                 <p>Latoyá, a vibrant Latin American restaurant and bar, invites you on a culinary journey that blends
+
                     the region's rich heritage with diverse global influences. Our menu offers a fusion of flavors, from
+
                     Peru's Japanese-inspired cuisine to the Caribbean's Indian-spiced dishes, showcasing Latin America's
+
                     culinary versatility.</p>
+
                 <p>Our handcrafted cocktails, made with fresh and unique ingredients, are as visually striking as they
+
                     are delicious. At Latoyá, dining is more than just a meal—it's an experience. With a warm atmosphere
+
                     and exceptional service, we invite you to explore the stories behind every dish.</p>
             </div>
         </div>
@@ -400,57 +560,70 @@ nav.scrolled {
                 <p style="margin-top:1rem; font-weight:bold;">- Udit M.</p>
             </div>
             <div class="review-card">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">"The Trio of Ceviche was incredibly fresh and tangy—easily the standout of the night. It's rare to find such authentic Latin flavors in the heart of Delhi."</p>
-            <p style="margin-top:1rem; font-weight:bold;">- Neha G.</p>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The Trio of Ceviche was incredibly fresh and tangy—easily the standout of the
+                    night. It's rare to find such authentic Latin flavors in the heart of Delhi."</p>
+                <p style="margin-top:1rem; font-weight:bold;">- Neha G.</p>
             </div>
 
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p class="review-text">"The cocktail program is top-notch. I tried the Papi Chulo, and the balance of tequila and citrus was bold and refreshing. The live Latin music really sets the mood."</p>
+                <p class="review-text">"The cocktail program is top-notch. I tried the Papi Chulo, and the balance of
+                    tequila and citrus was bold and refreshing. The live Latin music really sets the mood."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Sameer V.</p>
             </div>
 
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p class="review-text">"Absolutely loved the Brazilian Cheese Bread! It was soft, cheesy, and the accompanying dips were addictive. The outdoor seating area feels like a cozy, hidden garden."</p>
+                <p class="review-text">"Absolutely loved the Brazilian Cheese Bread! It was soft, cheesy, and the
+                    accompanying dips were addictive. The outdoor seating area feels like a cozy, hidden garden."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Ritika J.</p>
             </div>
 
             <div class="review-card">
                 <div class="stars">★★★★☆</div>
-                <p class="review-text">"Excellent service and a very chic, upscale vibe. The Lamb Chops were perfectly cooked. Just wish the Hot Toddy had a bit more punch, but overall a great experience."</p>
+                <p class="review-text">"Excellent service and a very chic, upscale vibe. The Lamb Chops were perfectly
+                    cooked. Just wish the Hot Toddy had a bit more punch, but overall a great experience."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Ishaan R.</p>
             </div>
 
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p class="review-text">"The desserts were true showstoppers. Both the Rose & Berry Tres Leches and the Chocolate with Chillies were as stunning to look at as they were delicious."</p>
+                <p class="review-text">"The desserts were true showstoppers. Both the Rose & Berry Tres Leches and the
+                    Chocolate with Chillies were as stunning to look at as they were delicious."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Mehak P.</p>
             </div>
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p class="review-text">"The Trio of Ceviche was a masterclass in fresh flavors—prawns, sea bass, and tuna all perfectly tangy. It’s rare to find such high-quality Latin American seafood in Delhi."</p>
+                <p class="review-text">"The Trio of Ceviche was a masterclass in fresh flavors—prawns, sea bass, and
+                    tuna all perfectly tangy. It’s rare to find such high-quality Latin American seafood in Delhi."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Neha G.</p>
             </div>
-            
+
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p class="review-text">"Don't skip the desserts! The Rose & Berry Tres Leches is delicate and floral, while the Chocolate with Chillies offers a surprising and bold complexity. A visual and culinary treat."</p>
+                <p class="review-text">"Don't skip the desserts! The Rose & Berry Tres Leches is delicate and floral,
+                    while the Chocolate with Chillies offers a surprising and bold complexity. A visual and culinary
+                    treat."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Mehak P.</p>
             </div>
 
             <div class="review-card">
                 <div class="stars">★★★★★</div>
-                <p class="review-text">"The Brazilian Cheese Bread is addictive! Pair it with the Papi Chulo cocktail—the rim salt made from kitchen discards is a brilliant sustainable touch that adds so much flavor."</p>
+                <p class="review-text">"The Brazilian Cheese Bread is addictive! Pair it with the Papi Chulo
+                    cocktail—the rim salt made from kitchen discards is a brilliant sustainable touch that adds so much
+                    flavor."</p>
                 <p style="margin-top:1rem; font-weight:bold;">- Sameer V.</p>
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="contact">
-        <div style="text-align: center; margin-top: 7px; font-size: 0.8rem; color: var(--color-blue-grey);">
-            &copy; 2026 Latoyá. All rights reserved. | Owned and Managed by Manifest Hospitality.
+        <div
+            style="text-align: center; margin-top: 5rem; font-size: 0.8rem; opacity: 0.6;text-decoration: none; ">
+            <a href="https://www.google.com/maps/place/Latoy%C3%A1/@28.528532,77.205876,13z/data=!4m6!3m5!1s0x390ce34f3e3173cd:0x930269ecd5f5a4f2!8m2!3d28.5285316!4d77.2058756!16s%2Fg%2F11wtkqllm7?hl=en&entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                target="_blank">Eldeco Centre, Hauz Rani, Malviya Nagar, New Delhi, Delhi, 110017, India</a>
+            <p>© 2026 Latoyá. All rights reserved. | Owned and Managed by Manifest Hospitality.</p>
         </div>
     </section>
     <script src="../js/script.js"></script>

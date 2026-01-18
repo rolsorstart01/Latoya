@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/tt-modernoir-trial" rel="stylesheet">
     <style>
         :root {
@@ -19,7 +21,11 @@
             --color-cream: #ede6d0;
         }
 
-        h1, h2, h3 { font-family: var(--font-secondary); }
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-secondary);
+        }
 
         /* --- Toggle Button Styles --- */
         .menu-toggle-container {
@@ -85,25 +91,61 @@
         }
 
         /* --- Original Styles Maintenance --- */
-        body, html { overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
-        #menu { margin-top: 24px; text-align: center; padding-bottom: 60px; }
-
-        .menu-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
+        body,
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
-        .main-logo { height: 100px; width: auto; }
+        #menu {
+            margin-top: 24px;
+            text-align: center;
+            padding-bottom: 60px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-logo {
+            height: 100px;
+            width: auto;
+        }
 
         @media screen and (max-width: 768px) {
-            .nav-links { position: absolute; right: 0px; height: 92vh; top: 8vh; background-color: var(--color-black-green); display: flex; flex-direction: column; align-items: center; width: 100%; transform: translateX(100%); transition: transform 0.5s ease-in; z-index: 1000; }
-            .menu-grid { grid-template-columns: 1fr; }
-            .nav-active { transform: translateX(0%) !important; }
-            .main-logo { height: 40px; }
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                height: 92vh;
+                top: 8vh;
+                background-color: var(--color-black-green);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 1000;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-active {
+                transform: translateX(0%) !important;
+            }
+
+            .main-logo {
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -111,41 +153,40 @@
 <body>
 
     <nav class="scrolled">
-    <a href="/" class="logo">
-        <img src="/assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
-    </a>
+        <a href="/" class="logo">
+            <img src="/assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
+        </a>
 
-    <ul class="nav-links">
-        <li>
-            <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link" target="_blank">
-                <img src="/assets/images/logos/zomato.png" alt="Zomato"
-                    style="height: 32px; width: auto; margin-right: 15px;">
-            </a>
+        <ul class="nav-links">
+            <li>
+                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link" target="_blank">
+                    <img src="/assets/images/logos/zomato.png" alt="Zomato"
+                        style="height: 32px; width: auto; margin-right: 15px;">
+                </a>
 
-            <a href="https://wa.me/919266394999" class="social-link" target="_blank">
-                <img src="/assets/images/logos/whatsapp.png" alt="Whatsapp"
-                    style="height: 32px; width: auto; margin-right: 15px;">
-            </a>
+                <a href="https://wa.me/919266394999" class="social-link" target="_blank">
+                    <img src="/assets/images/logos/whatsapp.png" alt="Whatsapp"
+                        style="height: 32px; width: auto; margin-right: 15px;">
+                </a>
 
-            <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet"
-               class="social-link" target="_blank">
-                <img src="/assets/images/logos/Insta.png" alt="Instagram"
-                    style="height: 32px; width: auto;">
-            </a>
-        </li>
+                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" class="social-link"
+                    target="_blank">
+                    <img src="/assets/images/logos/Insta.png" alt="Instagram" style="height: 32px; width: auto;">
+                </a>
+            </li>
 
-        <li><a href="/" class="nav-text">Home</a></li>
-        <li><a href="/menu" class="nav-text">Menu</a></li>
-        <li><a href="/gallery" class="nav-text">Gallery</a></li>
-        <li><a href="/contact" class="nav-text">Contact</a></li>
-    </ul>
+            <li><a href="/" class="nav-text">Home</a></li>
+            <li><a href="/menu" class="nav-text">Menu</a></li>
+            <li><a href="/gallery" class="nav-text">Gallery</a></li>
+            <li><a href="/contact" class="nav-text">Contact</a></li>
+        </ul>
 
-    <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
-</nav>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
 
 
     <section id="menu">
@@ -160,45 +201,114 @@
             <div class="menu-category">
                 <h3>Appetizers</h3>
                 <div class="menu-grid">
-                    <div class="menu-item"><h4>Brazilian Cheese Bread</h4><p>Parmesan and Tapioca Flour Bread served with Guasacaca, Chimichurri, and Black Bean Pate</p></div>
-                    <div class="menu-item"><h4>Three Cheese Quesadilla</h4><p>Homemade Tortilla with Monterey Jack, Cheddar and Mozzarella, Avocado Sour Cream, Morita Salsa</p></div>
-                    <div class="menu-item"><h4>Stuffed Guero Peppers</h4><p>Batter Fried Guero Pepper with Adobo Bean and Mozzarella stuffing, Tomato & Habanero Salsa</p></div>
-                    <div class="menu-item"><h4>Guacamole Molcajete</h4><p>Freshly pounded Guacamole served with Totopos, Rice Crisps and Sago Crisps</p></div>
-                    <div class="menu-item"><h4>Nachos Divino</h4><p>Tortilla Chips, Refried Beans, melted Monterey Jack Cheese, Pico de Gallo, Guacamole, Sour Cream</p></div>
-                    <div class="menu-item"><h4>Chilli & Garlic Shrimps</h4><p>Miso marinated Shrimps with Guajillo Chilli-Garlic Butter served with Sourdough</p></div>
+                    <div class="menu-item">
+                        <h4>Brazilian Cheese Bread</h4>
+                        <p>Parmesan and Tapioca Flour Bread served with Guasacaca, Chimichurri, and Black Bean Pate</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Three Cheese Quesadilla</h4>
+                        <p>Homemade Tortilla with Monterey Jack, Cheddar and Mozzarella, Avocado Sour Cream, Morita
+                            Salsa</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Stuffed Guero Peppers</h4>
+                        <p>Batter Fried Guero Pepper with Adobo Bean and Mozzarella stuffing, Tomato & Habanero Salsa
+                        </p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Guacamole Molcajete</h4>
+                        <p>Freshly pounded Guacamole served with Totopos, Rice Crisps and Sago Crisps</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Nachos Divino</h4>
+                        <p>Tortilla Chips, Refried Beans, melted Monterey Jack Cheese, Pico de Gallo, Guacamole, Sour
+                            Cream</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Chilli & Garlic Shrimps</h4>
+                        <p>Miso marinated Shrimps with Guajillo Chilli-Garlic Butter served with Sourdough</p>
+                    </div>
                 </div>
             </div>
 
             <div class="menu-category">
                 <h3>Tacos and Tostadas</h3>
                 <div class="menu-grid">
-                    <div class="menu-item"><h4>Pineapple, Avocado and Burrata Tostada</h4><p>Pineapple-Guajillo Salsa, Avocado Sour Cream, Stracciatella, Chipotle Bean Paste</p></div>
-                    <div class="menu-item"><h4>Mushroom Asada Taco</h4><p>Roasted Oyster, Button and Shitake Mushrooms, Onion and Garlic Chips</p></div>
-                    <div class="menu-item"><h4>Citrusy Tuna Tartare Tostada</h4><p>Yellow Fin Tuna, Grapefruit, Avocado, Sesame, Sour Cream, Chipotle Aioli</p></div>
-                    <div class="menu-item"><h4>Pollo Pastor Taco</h4><p>Charred Chicken, Achiote, Pasilla and Guajillo Chillies, Pineapple Habanero Salsa</p></div>
-                    <div class="menu-item"><h4>Baja Fish Taco</h4><p>Beer Battered Fish served with Pickled Onions, Cabbage and Avocado</p></div>
-                    <div class="menu-item"><h4>Mutton Birria Taco</h4><p>Tender Braised Mutton served with a Birria Stew</p></div>
+                    <div class="menu-item">
+                        <h4>Pineapple, Avocado and Burrata Tostada</h4>
+                        <p>Pineapple-Guajillo Salsa, Avocado Sour Cream, Stracciatella, Chipotle Bean Paste</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mushroom Asada Taco</h4>
+                        <p>Roasted Oyster, Button and Shitake Mushrooms, Onion and Garlic Chips</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Citrusy Tuna Tartare Tostada</h4>
+                        <p>Yellow Fin Tuna, Grapefruit, Avocado, Sesame, Sour Cream, Chipotle Aioli</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pollo Pastor Taco</h4>
+                        <p>Charred Chicken, Achiote, Pasilla and Guajillo Chillies, Pineapple Habanero Salsa</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Baja Fish Taco</h4>
+                        <p>Beer Battered Fish served with Pickled Onions, Cabbage and Avocado</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mutton Birria Taco</h4>
+                        <p>Tender Braised Mutton served with a Birria Stew</p>
+                    </div>
                 </div>
             </div>
 
             <div class="menu-category">
                 <h3>Mains</h3>
                 <div class="menu-grid">
-                    <div class="menu-item"><h4>Enchiladas</h4><p>Stuffed Flour Tortillas, topped and baked with Monterey Jack and Pasilla-Guajillo Chilli Sauces</p></div>
-                    <div class="menu-item"><h4>Miso Glazed Panela</h4><p>Miso marinated Grilled Panela served with Peruvian Green Rice and Seasonal Vegetables</p></div>
-                    <div class="menu-item"><h4>Chicken Saltado</h4><p>Stir Fried Chicken and Peppers with Crispy Fried Rice, served with an Aji Amarillo Broth</p></div>
-                    <div class="menu-item"><h4>Brazilian Stew (Moqueca)</h4><p>Creamy Coconut Stew with Prawns, Seabass and Salmon, Peppers, Garlic, Cilantro, Steamed Rice</p></div>
-                    <div class="menu-item"><h4>Argentine Lamb Chops</h4><p>Smoked Paprika & Cumin Roasted Lamb Chops with Grilled Potatoes, Vegetables, and Chimichurri</p></div>
-                    <div class="menu-item"><h4>Pescado Contramar</h4><p>Whole Butterflied Fish grilled with Lemon-Parsley and Adobo marinades</p></div>
+                    <div class="menu-item">
+                        <h4>Enchiladas</h4>
+                        <p>Stuffed Flour Tortillas, topped and baked with Monterey Jack and Pasilla-Guajillo Chilli
+                            Sauces</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Miso Glazed Panela</h4>
+                        <p>Miso marinated Grilled Panela served with Peruvian Green Rice and Seasonal Vegetables</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Chicken Saltado</h4>
+                        <p>Stir Fried Chicken and Peppers with Crispy Fried Rice, served with an Aji Amarillo Broth</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Brazilian Stew (Moqueca)</h4>
+                        <p>Creamy Coconut Stew with Prawns, Seabass and Salmon, Peppers, Garlic, Cilantro, Steamed Rice
+                        </p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Argentine Lamb Chops</h4>
+                        <p>Smoked Paprika & Cumin Roasted Lamb Chops with Grilled Potatoes, Vegetables, and Chimichurri
+                        </p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pescado Contramar</h4>
+                        <p>Whole Butterflied Fish grilled with Lemon-Parsley and Adobo marinades</p>
+                    </div>
                 </div>
             </div>
 
             <div class="menu-category">
                 <h3>Desserts</h3>
                 <div class="menu-grid">
-                    <div class="menu-item"><h4>Gianduja Cheesecake</h4><p>Gianduja Cheesecake and Oat Cookie covered in Dark Chocolate Ganache, Roasted Hazelnuts</p></div>
-                    <div class="menu-item"><h4>Churros Rellenos</h4><p>Dark Chocolate, Coffee Caramel and Berry filled Churros, Sea Salt Dulce de Leche</p></div>
-                    <div class="menu-item"><h4>Rose & Berry Tres Leche</h4><p>Sponge Cake soaked with Rose-infused Milk, Cranberry & Strawberry Compote</p></div>
+                    <div class="menu-item">
+                        <h4>Gianduja Cheesecake</h4>
+                        <p>Gianduja Cheesecake and Oat Cookie covered in Dark Chocolate Ganache, Roasted Hazelnuts</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Churros Rellenos</h4>
+                        <p>Dark Chocolate, Coffee Caramel and Berry filled Churros, Sea Salt Dulce de Leche</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Rose & Berry Tres Leche</h4>
+                        <p>Sponge Cake soaked with Rose-infused Milk, Cranberry & Strawberry Compote</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -207,36 +317,75 @@
             <div class="menu-category">
                 <h3>Signature Cocktails</h3>
                 <div class="menu-grid">
-                    <div class="menu-item"><h4>Terra Madre</h4><p>Tequila | Mezcal | Beetroot | Pandan | Nutty & Earthy</p></div>
-                    <div class="menu-item"><h4>Coco Loco</h4><p>Mezcal | Coconut Liqueur | Pineapple | Citrus | Smokey & Tropical</p></div>
-                    <div class="menu-item"><h4>Papi Chulo</h4><p>Tequila | Cucumber | Cilantro | Jalapeno | Yuzu | Spicy & Savoury</p></div>
-                    <div class="menu-item"><h4>El Dorado</h4><p>Whiskey | Martini Bianco | Palo Santo | Spiced & Woody</p></div>
-                    <div class="menu-item"><h4>Inca</h4><p>Mezcal | Pisco | Bell Pepper | Tomatillo | Habanero | Umami & Savoury</p></div>
+                    <div class="menu-item">
+                        <h4>Terra Madre</h4>
+                        <p>Tequila | Mezcal | Beetroot | Pandan | Nutty & Earthy</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Coco Loco</h4>
+                        <p>Mezcal | Coconut Liqueur | Pineapple | Citrus | Smokey & Tropical</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Papi Chulo</h4>
+                        <p>Tequila | Cucumber | Cilantro | Jalapeno | Yuzu | Spicy & Savoury</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>El Dorado</h4>
+                        <p>Whiskey | Martini Bianco | Palo Santo | Spiced & Woody</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Inca</h4>
+                        <p>Mezcal | Pisco | Bell Pepper | Tomatillo | Habanero | Umami & Savoury</p>
+                    </div>
                 </div>
             </div>
 
             <div class="menu-category">
                 <h3>Classic Cocktails</h3>
                 <div class="menu-grid">
-                    <div class="menu-item"><h4>Micheladas</h4><p>Mexican Beer | Tomato | Habanero | Tajin | Cayenne</p></div>
-                    <div class="menu-item"><h4>Mezcal Sour</h4><p>Mezcal | Simple Syrup | Citrus | Vegan Foam</p></div>
-                    <div class="menu-item"><h4>Pan Am Sour</h4><p>Bourbon Whiskey | Cachaca | Orange | Citrus | Malbec</p></div>
-                    <div class="menu-item"><h4>Mezcal Negroni</h4><p>Mezcal | Sweet Vermouth | Campari | Maraschino</p></div>
+                    <div class="menu-item">
+                        <h4>Micheladas</h4>
+                        <p>Mexican Beer | Tomato | Habanero | Tajin | Cayenne</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mezcal Sour</h4>
+                        <p>Mezcal | Simple Syrup | Citrus | Vegan Foam</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pan Am Sour</h4>
+                        <p>Bourbon Whiskey | Cachaca | Orange | Citrus | Malbec</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mezcal Negroni</h4>
+                        <p>Mezcal | Sweet Vermouth | Campari | Maraschino</p>
+                    </div>
                 </div>
             </div>
 
             <div class="menu-category">
                 <h3>Margaritas</h3>
                 <div class="menu-grid">
-                    <div class="menu-item"><h4>Classic Margarita</h4><p>Tequila | Orange Liqueur | Citrus</p></div>
-                    <div class="menu-item"><h4>Pluma Margarita</h4><p>Tequila | Passionfruit | Prickly Pear | Plum</p></div>
-                    <div class="menu-item"><h4>Mango & Jalapeno</h4><p>Tequila | Mango | Jalapeno | Citrus</p></div>
+                    <div class="menu-item">
+                        <h4>Classic Margarita</h4>
+                        <p>Tequila | Orange Liqueur | Citrus</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Pluma Margarita</h4>
+                        <p>Tequila | Passionfruit | Prickly Pear | Plum</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mango & Jalapeno</h4>
+                        <p>Tequila | Mango | Jalapeno | Citrus</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 3rem; font-size: 0.8rem; color: #666;">
-            &copy; 2026 Latoyá. All rights reserved. | Owned and Managed by Manifest Hospitality.
+        <div
+            style="text-align: center; margin-top: 5rem; font-size: 0.8rem; opacity: 0.6;text-decoration: none;">
+            <a href="https://www.google.com/maps/place/Latoy%C3%A1/@28.528532,77.205876,13z/data=!4m6!3m5!1s0x390ce34f3e3173cd:0x930269ecd5f5a4f2!8m2!3d28.5285316!4d77.2058756!16s%2Fg%2F11wtkqllm7?hl=en&entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                target="_blank">Eldeco Centre, Hauz Rani, Malviya Nagar, New Delhi, Delhi, 110017, India</a>
+            <p>© 2026 Latoyá. All rights reserved. | Owned and Managed by Manifest Hospitality.</p>
         </div>
     </section>
 
@@ -247,7 +396,7 @@
             const btns = document.querySelectorAll('.toggle-btn');
 
             btns.forEach(btn => btn.classList.remove('active'));
-            
+
             if (type === 'food') {
                 barMenu.style.display = 'none';
                 barMenu.classList.remove('active');
@@ -265,4 +414,5 @@
     </script>
     <script src="../js/script.js"></script>
 </body>
+
 </html>

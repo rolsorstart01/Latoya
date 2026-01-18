@@ -8,37 +8,47 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/tt-modernoir-trial" rel="stylesheet">
     <style>
         :root {
             --font-primary: 'Outfit', sans-serif;
             --font-secondary: 'Playfair Display', serif;
             --color-black-green: #0a1a1a;
-            --color-cream: #ede6d0; /* New Cream color */
+            --color-cream: #ede6d0;
+            /* New Cream color */
             --sage-green: #859476;
         }
 
         /* --- Global Resets & Theme --- */
-        body, html {
+        body,
+        html {
             overflow-x: hidden;
             width: 100%;
             margin: 0;
             padding: 0;
             font-family: var(--font-primary);
-            background-color: var(--sage-green); /* Background set to Black-Green */
-            color: var(--color-cream); /* Text default to Cream */
+            background-color: var(--sage-green);
+            /* Background set to Black-Green */
+            color: var(--color-cream);
+            /* Text default to Cream */
         }
 
-        h1, h2, h3, h4 { 
-            font-family: var(--font-secondary); 
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-secondary);
             text-align: center;
             color: var(--color-cream);
         }
 
         /* --- Links Styling --- */
         a {
-            text-decoration: none; /* Removed underline */
+            text-decoration: none;
+            /* Removed underline */
             color: var(--color-cream);
             transition: opacity 0.3s ease;
         }
@@ -53,10 +63,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
-        .main-logo { height: 100px; width: auto; }
+        .main-logo {
+            height: 100px;
+            width: auto;
+        }
 
         .nav-links {
             display: flex;
@@ -72,42 +85,61 @@
         }
 
         /* --- Burger Menu Visibility --- */
-        .burger { display: none;
-             cursor: pointer; }
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
         .burger div {
             width: 25px;
             height: 3px;
-            background-color: white; /* Burger lines now cream */
+            background-color: white;
+            /* Burger lines now cream */
             margin: 5px;
         }
 
         /* --- Contact Section Styles --- */
-        #contact { padding: 60px 20px;
-             text-align: center;
-             margin-top: 50px; }
-        
+        #contact {
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 50px;
+            display: flex;
+            /* Added flex to help outer centering */
+            flex-direction: column;
+            align-items: center;
+        }
+
         .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 40px;
-            max-width: 1200px;
+            /* Centers the two blocks together */
+            gap: 60px;
+            /* Increased gap for better spacing */
+            max-width: 1000px;
+            /* Reduced max-width to pull text/map closer to center */
             margin: 0 auto;
             text-align: left;
+            /* Keep text left-aligned on desktop for readability */
         }
 
-        .footer-info { flex: 1; min-width: 300px; }
-        
+        .footer-info {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            /* Limits width to keep it compact */
+        }
+
         .footer-links p {
             margin: 15px 0;
             line-height: 1.6;
         }
 
-        .map-container iframe { 
-            width: 100%; 
-            height: 350px; 
-            border: 0; 
-            border-radius: 15px; 
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            border-radius: 15px;
         }
 
         /* --- Social Links Fix --- */
@@ -116,7 +148,7 @@
             height: 32px;
             width: auto;
             margin-right: 15px;
-            margin-top: 0 !important; /* Overriding your 250px margin */
+            margin-top: 0 !important;
         }
 
         /* --- Mobile Responsive --- */
@@ -136,56 +168,79 @@
                 z-index: 1000;
             }
 
-            .nav-active { transform: translateX(0%) !important; }
+            .nav-active {
+                transform: translateX(0%) !important;
+            }
 
-            .nav-links li { opacity: 1; margin: 20px 0; }
+            .nav-links li {
+                opacity: 1;
+                margin: 20px 0;
+            }
 
-            .burger { display: block; }
-            
-            .main-logo { height: 50px; }
-            .footer-content { flex-direction: column; }
+            .burger {
+                display: block;
+            }
+
+            .main-logo {
+                height: 50px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                /* Centers all text in the contact section on mobile */
+                align-items: center;
+            }
+
+            .social-link {
+                margin: 0 10px;
+                /* Even spacing for centered icons on mobile */
+            }
+
+            .footer-info {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<nav class="scrolled">
-    <a href="/" class="logo">
-        <img src="/assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
-    </a>
+    <nav class="scrolled">
+        <a href="/" class="logo">
+            <img src="/assets/images/logos/logo.png" alt="Latoyá" class="main-logo">
+        </a>
 
-    <ul class="nav-links">
-        <li>
-            <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link" target="_blank">
-                <img src="/assets/images/logos/zomato.png" alt="Zomato"
-                    style="height: 32px; width: auto; margin-right: 15px;">
-            </a>
+        <ul class="nav-links">
+            <li>
+                <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" class="social-link" target="_blank">
+                    <img src="/assets/images/logos/zomato.png" alt="Zomato"
+                        style="height: 32px; width: auto; margin-right: 15px;">
+                </a>
 
-            <a href="https://wa.me/919266394999" class="social-link" target="_blank">
-                <img src="/assets/images/logos/whatsapp.png" alt="Whatsapp"
-                    style="height: 32px; width: auto; margin-right: 15px;">
-            </a>
+                <a href="https://wa.me/919266394999" class="social-link" target="_blank">
+                    <img src="/assets/images/logos/whatsapp.png" alt="Whatsapp"
+                        style="height: 32px; width: auto; margin-right: 15px;">
+                </a>
 
-            <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet"
-               class="social-link" target="_blank">
-                <img src="/assets/images/logos/Insta.png" alt="Instagram"
-                    style="height: 32px; width: auto;">
-            </a>
-        </li>
+                <a href="https://www.instagram.com/latoya.in/?utm_source=ig_web_button_share_sheet" class="social-link"
+                    target="_blank">
+                    <img src="/assets/images/logos/Insta.png" alt="Instagram" style="height: 32px; width: auto;">
+                </a>
+            </li>
 
-        <li><a href="/" class="nav-text">Home</a></li>
-        <li><a href="/menu" class="nav-text">Menu</a></li>
-        <li><a href="/gallery" class="nav-text">Gallery</a></li>
-        <li><a href="/contact" class="nav-text">Contact</a></li>
-    </ul>
+            <li><a href="/" class="nav-text">Home</a></li>
+            <li><a href="/menu" class="nav-text">Menu</a></li>
+            <li><a href="/gallery" class="nav-text">Gallery</a></li>
+            <li><a href="/contact" class="nav-text">Contact</a></li>
+        </ul>
 
-    <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
-</nav>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
 
     <section id="contact">
         <h2 id="visitus">Speak To Us</h2>
@@ -193,19 +248,27 @@
             <div class="footer-info">
                 <h3>For any queries, reservations, or feedback, please contact us at:</h3>
                 <div class="footer-links">
-                    <p><strong>Address:</strong><a href="https://www.google.com/maps/place/Latoy%C3%A1/@28.5285316,77.2032953,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce34f3e3173cd:0x930269ecd5f5a4f2!8m2!3d28.5285316!4d77.2058756!16s%2Fg%2F11wtkqllm7?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" target="_blank"> Latoyá, Saket, New Delhi</a> </p>
-                    <p><strong>Email:</strong> <a href="mailto:manifesthospitality@gmail.com">manifesthospitality@gmail.com</a></p>
-                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919266394999" target="_blank">+91 92663 94999</a></p>
-                    
+                    <p><strong>Address:</strong><a
+                            href="https://www.google.com/maps/place/Latoy%C3%A1/@28.5285316,77.2032953,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce34f3e3173cd:0x930269ecd5f5a4f2!8m2!3d28.5285316!4d77.2058756!16s%2Fg%2F11wtkqllm7?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                            target="_blank"> Latoyá, Saket, New Delhi</a> </p>
+                    <p><strong>Email:</strong> <a
+                            href="mailto:manifesthospitality@gmail.com">manifesthospitality@gmail.com</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919266394999" target="_blank">+91 92663
+                            94999</a></p>
+
                     <div style="margin-top: 30px;">
-                        <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" target="_blank" class="social-link">
-                            <img src="../assets/images/logos/zomato.png" alt="Zomato" style="height: 32px; width: auto;">
+                        <a href="https://www.district.in/dining/ncr/latoya-saket-new-delhi" target="_blank"
+                            class="social-link">
+                            <img src="../assets/images/logos/zomato.png" alt="Zomato"
+                                style="height: 32px; width: auto;">
                         </a>
                         <a href="https://wa.me/919266394999" target="_blank" class="social-link">
-                            <img src="../assets/images/logos/whatsapp.png" alt="Whatsapp" style="height: 32px; width: auto;">
+                            <img src="../assets/images/logos/whatsapp.png" alt="Whatsapp"
+                                style="height: 32px; width: auto;">
                         </a>
                         <a href="https://www.instagram.com/latoya.in/" target="_blank" class="social-link">
-                            <img src="../assets/images/logos/Insta.png" alt="Instagram" style="height: 32px; width: auto;">
+                            <img src="../assets/images/logos/Insta.png" alt="Instagram"
+                                style="height: 32px; width: auto;">
                         </a>
                     </div>
                 </div>
@@ -216,16 +279,23 @@
 
             <div class="footer-map">
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28044.318697848685!2d77.19290559982772!3d28.523489343154612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce34f3e3173cd%3A0x930269ecd5f5a4f2!2zTGF0b3nDoQ!5e0!3m2!1sen!2sus!4v1768210403064!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28044.318697848685!2d77.19290559982772!3d28.523489343154612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce34f3e3173cd%3A0x930269ecd5f5a4f2!2zTGF0b3nDoQ!5e0!3m2!1sen!2sus!4v1768210403064!5m2!1sen!2sus"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 5rem; font-size: 0.8rem; opacity: 0.6;">
-            © 2026 Latoyá. All rights reserved. | Owned and Managed by Manifest Hospitality.
+        <div
+            style="text-align: center; margin-top: 5rem; font-size: 0.8rem; opacity: 0.6;text-decoration: none;">
+            <a href="https://www.google.com/maps/place/Latoy%C3%A1/@28.528532,77.205876,13z/data=!4m6!3m5!1s0x390ce34f3e3173cd:0x930269ecd5f5a4f2!8m2!3d28.5285316!4d77.2058756!16s%2Fg%2F11wtkqllm7?hl=en&entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                target="_blank">Eldeco Centre, Hauz Rani, Malviya Nagar, New Delhi, Delhi, 110017, India</a>
+            <p>© 2026 Latoyá. All rights reserved. | Owned and Managed by Manifest Hospitality.</p>
         </div>
     </section>
 
     <script src="../js/script.js"></script>
 </body>
+
 </html>
