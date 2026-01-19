@@ -207,7 +207,7 @@ section {
 .burger div {
     width: 25px;
     height: 3px;
-    background-color: currentColor;
+    background-color: white;
     margin: 5px;
     transition: 0.3s;
 }
